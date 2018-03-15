@@ -2,6 +2,11 @@
 
 ##### 1. Clone this repository
 
+```
+cd your/development/folder/
+git clone https://github.com/yurabysaha/mail_sender.git
+```
+
 ##### 2. Create new venv. 
 
 > Open console in project directory and run command:
@@ -14,10 +19,12 @@
 
 `pip install -r requirements.txt`
 
-##### 5. Create migrations
+##### 5. Create new database in your local Postgres
+
+##### 6. Create migrations
 
 `./manage.py makemigrations`
 
-##### 6. Apply all migrations
+##### 7. Apply all migrations
 
 `./manage.py migrate`
