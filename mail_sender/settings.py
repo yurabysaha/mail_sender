@@ -25,7 +25,7 @@ SECRET_KEY = '2@)y51m*p5bv+h5s2wftv#xd0wxe)pejdkcqhi1ceumzy)fj98'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -124,8 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     pass
