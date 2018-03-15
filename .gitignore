@@ -50,6 +50,7 @@ fabric.properties
 ### Python template
 # Byte-compiled / optimized / DLL files
 __pycache__/
+mail_sender/__pycache__/
 *.py[cod]
 *$py.class
 
@@ -103,6 +104,7 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
+__pycache__
 
 # Flask stuff:
 instance/

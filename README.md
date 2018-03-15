@@ -4,7 +4,7 @@
 
 ##### 2. Create new venv. 
 
-Open console in project directory (mail_sender) and run command:
+> Open console in project directory and run command:
  
  `python3.6 -m venv venv_sender`
 
