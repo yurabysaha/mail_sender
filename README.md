@@ -6,8 +6,9 @@
 cd your/development/folder/
 git clone https://github.com/yurabysaha/mail_sender.git
 ```
-##### 2. Add remote 
-`git  remote add origin https://github.com/yurabysaha/mail_sender.git`
+##### 2. Сhange gir to project
+`cd mail_sender`
+
 ##### 3. Create new venv. 
 
 > Open console in project directory and run command:
