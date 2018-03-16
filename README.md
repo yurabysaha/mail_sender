@@ -8,24 +8,24 @@ git clone https://github.com/yurabysaha/mail_sender.git
 ```
 ##### 2. Add remote 
 `git  remote add origin https://github.com/yurabysaha/mail_sender.git`
-##### 2. Create new venv. 
+##### 3. Create new venv. 
 
 > Open console in project directory and run command:
  
  `python3.6 -m venv venv_sender`
 
-##### 3. Activate venv
+##### 4. Activate venv
 
-##### 4. Install all requirement
+##### 5. Install all requirement
 
 `pip install -r requirements.txt`
 
-##### 5. Create new database in your local Postgres
+##### 6. Create new database in your local Postgres
 
-##### 6. Create migrations
+##### 7. Create migrations
 
 `./manage.py makemigrations`
 
-##### 7. Apply all migrations
+##### 8. Apply all migrations
 
 `./manage.py migrate`
