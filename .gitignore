@@ -6,6 +6,7 @@
 ./venv_sender
 venv_sender/
 .idea/
+mail_sender/local_settings.py
 
 # User-specific stuff:
 .idea/**/workspace.xml
