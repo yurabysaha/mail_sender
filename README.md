@@ -6,7 +6,7 @@
 cd your/development/folder/
 git clone https://github.com/yurabysaha/mail_sender.git
 ```
-##### 2. Change dir to project
+##### 2. Change directory to project
 `cd mail_sender`
 
 ##### 3. Create new venv. 
