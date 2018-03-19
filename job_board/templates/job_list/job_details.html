@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<html>
+<head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css"
+</head>
+
+{% block content %}
+
+    <div class="job">
+            <div class="date">
+                <h5>Created at: {{ job.created_at }} and Updated at: {{ job.updated_at }}</h5>
+            </div>
+        <h1>{{ job.title }}</h1>
+        <p>{{ job.email_text|linebreaksbr }}</p>
+    </div>
+
+    <div>
+        <button type="submit" class="save btn btn-default">Upload csv</button>
+        <button type="submit" class="save btn btn-default">Upload xlsx</button>
+    </div>
+
+{% endblock %}
+
+</html>

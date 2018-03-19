@@ -1,8 +1,7 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-
-from job_board.forms import JobForm
+from .forms import JobForm
 from .models import Job
 
 
@@ -29,6 +28,7 @@ def job_create(request):
         form = JobForm()
     return render(request, 'job_list/job_create.html', {'form': form})
 
+
 def job_edit(request, job_id):
     job = get_object_or_404(Job, id=job_id)
     if request.method == "POST":
@@ -41,3 +41,10 @@ def job_edit(request, job_id):
     else:
         form = JobForm(instance=job)
     return render(request, 'job_list/job_edit.html', {'form': form})
+
+
+def job_detail(request, job_id):
+    job = get_object_or_404(Job, id=job_id)
+    return render(request, 'job_list/job_details.html', {'job': job})
+
+
