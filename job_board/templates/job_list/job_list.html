@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
 </head>
     <body>
     <a href="create" type="button" class="btn btn-default">Сreate</a>
@@ -16,7 +17,8 @@
             {% for job in jobs %}
 <tr>
       <td scope="col">{{ job.title }}</td>
-       <td> <a href="{{ job.id }}/delete" type="button" class="btn btn-default">Delete</a> </td>
+       <td> <a href="{{ job.id }}/delete" type="button" class="btn btn-default">Delete</a>
+       <a href="{{ job.id }}/edit" type="button" class="btn btn-default">Edit</a></td>
                 </tr>
 {% endfor %}
 </table>
