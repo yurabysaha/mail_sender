@@ -22,21 +22,20 @@ def job_create(request):
         form = JobForm(request.POST)
         if form.is_valid():
             form = form.save(commit=False)
-            form.user_id = User.objects.first().id
+            form.user_id = request.user.id
             form.save()
             return redirect('jobs')
     else:
         form = JobForm()
     return render(request, 'job_list/job_create.html', {'form': form})
 
+
 def job_edit(request, job_id):
     job = get_object_or_404(Job, id=job_id)
     if request.method == "POST":
         form = JobForm(request.POST, instance=job)
         if form.is_valid():
-            job = form.save(commit=False)
-            job.user_id = User.objects.first().id
-            job.save()
+            form.save()
             return redirect('jobs')
     else:
         form = JobForm(instance=job)

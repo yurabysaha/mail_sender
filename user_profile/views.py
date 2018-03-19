@@ -1,17 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.hashers import check_password
 from .models import MyUser
-from django.contrib.auth import login, authenticate, logout
-
+from django.contrib.auth import login, logout
 
 
 def registration(request):
     if request.method == 'POST':
         user = MyUser.objects.create_user(email=request.POST['username'], password=request.POST['password'])
         login(request, user)
-        return redirect('/user/registration/')
+        return redirect('/jobs/')
     else:
-        # logout(request)
         return render(request, 'mail_sender/registration.html')
 
 
@@ -23,7 +20,6 @@ def log_in(request):
             return redirect('/jobs/')
     else:
         return render(request, 'mail_sender/login.html')
-
 
 
 def log_out(request):
