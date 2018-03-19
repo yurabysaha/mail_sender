@@ -11,5 +11,3 @@ class JobForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'email_text':forms.Textarea(attrs={'class': 'form-control'})
         }
-
-
