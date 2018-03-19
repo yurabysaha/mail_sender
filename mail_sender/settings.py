@@ -82,8 +82,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db_mail_sender',
-        'USER': 'viktor',
-        'PASSWORD': 'viktor',
+        'USER': 'postgres',
+        'PASSWORD': 'prod_postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }
