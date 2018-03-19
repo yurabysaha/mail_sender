@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'job_board',
     'user_profile',
     'landing_page',
-    'bootstrap4',
 ]
 
 MIDDLEWARE = [
