@@ -21,4 +21,5 @@ from django.conf.urls import url, include
 urlpatterns = [
     path(r'^admin/', admin.site.urls),
     path(r'user/', include('user_profile.urls')),
+    path('jobs/', include("job_board.urls")),
 ]
