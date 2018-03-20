@@ -1,9 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from mail_sender import settings
+
 
 class Job(models.Model):
-    user = models.ForeignKey('auth.User', on_delete = models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=18)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

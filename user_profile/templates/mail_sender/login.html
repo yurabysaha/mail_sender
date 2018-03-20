@@ -1,0 +1,30 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+{% block login %}
+{% if not user.is_authenticated %}
+<div class="large-offset-3 large-6 columns">
+	<form action="/user/login/" method="post">
+		{% csrf_token %}
+		<label for="username">User name</label>
+		<input type="text" name="username" id="username">
+		<label for="password">Password</label>
+		<input type="text" name="password" id="password">
+		{% if login_error %}
+			<label class="error">{{ login_error }}</label>
+		{% endif %}
+		<input class="button" type="submit" value="Login">
+		<div class="label round secondary"><a href="/user/registration/">Registration</a></div>
+
+{% else %}
+		Welcome {{ user.email }}
+		<p>You are already logged in!</p>
+		<a href="/jobs/">Job</a>
+
+{% endif %}
+	</form>
+</div>
+
+{% endblock %}
+
