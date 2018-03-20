@@ -1,12 +1,10 @@
 {% load staticfiles %}
 <html>
     <head>
-
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-
-</head>
+    </head>
     <body>
     <a href="create" type="button" class="btn btn-default">Сreate</a>
             <nav class="navbar navbar-light bg-light">
@@ -14,13 +12,15 @@
 
 </nav>
      <table class="table table-hover">
-            {% for job in jobs %}
-<tr>
-      <td scope="col">{{ job.title }}</td>
+         {% for job in jobs %}
+
+    <tr>
+       <td scope="col"><a href="{{ job.id }}">{{ job.title }}</a></td>
+       <td>{{ job.created_at }}</td>
        <td> <a href="{{ job.id }}/delete" type="button" class="btn btn-default">Delete</a>
        <a href="{{ job.id }}/edit" type="button" class="btn btn-default">Edit</a></td>
-                </tr>
-{% endfor %}
-</table>
+    </tr>
+         {% endfor %}
+    </table>
     </body>
 </html>

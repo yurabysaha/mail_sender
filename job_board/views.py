@@ -1,9 +1,9 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
-
-from job_board.forms import JobForm
+from .forms import JobForm
 from .models import Job
+from email_service.models import Email
 
 
 def job_list(request):
@@ -13,8 +13,15 @@ def job_list(request):
 
 def job_delete(request, job_id):
     job = Job.objects.get(id = job_id)
-    job.delete()
-    return redirect("/jobs/")
+    if request.method == "POST":
+        job.delete()
+        return redirect("jobs")
+
+    context = {
+    "object": job,
+    }
+
+    return render(request, "job_list/confirm_delete.html", context)
 
 
 def job_create(request):
@@ -40,3 +47,10 @@ def job_edit(request, job_id):
     else:
         form = JobForm(instance=job)
     return render(request, 'job_list/job_edit.html', {'form': form})
+
+
+def job_detail(request, job_id):
+    job = get_object_or_404(Job, id=job_id)
+    return render(request, 'job_list/job_details.html', {'job': job})
+
+
