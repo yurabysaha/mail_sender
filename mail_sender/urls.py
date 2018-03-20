@@ -15,12 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from user_profile import views
-
+from django.conf.urls import include
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^$', views.index_page, name='index')
+    re_path('^$', include("landing_page.urls")),
 ]
-
