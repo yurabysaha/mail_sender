@@ -1,8 +1,10 @@
 from django.contrib.auth.models import User
+from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .forms import JobForm
 from .models import Job
+from mail_sender.email_service.models import Email
 
 
 def job_list(request):
@@ -12,8 +14,23 @@ def job_list(request):
 
 def job_delete(request, job_id):
     job = Job.objects.get(id = job_id)
-    job.delete()
-    return redirect("/jobs/")
+    if request.method == "POST":
+        job.delete()
+        messages.success(request, "The Job was deleted")
+
+        return redirect('/jobs/')
+
+    # return render(request, "confirm_delete.html")
+
+    context = {
+        "object": job
+    }
+
+    return render(request, "job_list/confirm_delete.html", context)
+
+
+
+    # return redirect("/jobs/")
 
 
 def job_create(request):
