@@ -21,7 +21,7 @@ def job_delete(request, job_id):
     "object": job,
     }
 
-    return render(request, "job_list/confirm_delete.html", context)
+    return render(request, "job_list/job_list.html", context)
 
 
 def job_create(request):
