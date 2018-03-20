@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
-from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .forms import JobForm
 from .models import Job
-# from mail_sender.email_service.models import Email
+from email_service.models import Email
+
 
 def job_list(request):
     jobs = Job.objects.filter(created_at__lte = timezone.now()).order_by('created_at')
@@ -14,21 +14,14 @@ def job_list(request):
 def job_delete(request, job_id):
     job = Job.objects.get(id = job_id)
     if request.method == "POST":
-        # job.delete()
-        message = messages.success(request, "The Job was deleted")
-        return render(request, 'job_list/job_list.html', {'message': message})
-
-    # return render(request, "confirm_delete.html")
+        job.delete()
+        return redirect("jobs")
 
     context = {
-        "object": job.delete()
+    "object": job,
     }
 
     return render(request, "job_list/confirm_delete.html", context)
-
-
-
-    # return redirect("/jobs/")
 
 
 def job_create(request):
@@ -36,7 +29,7 @@ def job_create(request):
         form = JobForm(request.POST)
         if form.is_valid():
             form = form.save(commit=False)
-            form.user_id = User.objects.first().id
+            form.user_id = request.user.id
             form.save()
             return redirect('jobs')
     else:
@@ -49,9 +42,7 @@ def job_edit(request, job_id):
     if request.method == "POST":
         form = JobForm(request.POST, instance=job)
         if form.is_valid():
-            job = form.save(commit=False)
-            job.user_id = User.objects.first().id
-            job.save()
+            form.save()
             return redirect('jobs')
     else:
         form = JobForm(instance=job)
