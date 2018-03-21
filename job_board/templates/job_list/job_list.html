@@ -52,4 +52,19 @@
          {% endfor %}
     </table>
     </body>
+
+
+<form class="input-group" action="{% url 'jobs' %}" method="GET" >
+    <input type="text" placeholder="Search jobs by title " class="input form-control" name="q" value='{{ request.GET.q }}'>
+    <span class="input-group-btn">
+            <button type="submit" class="btn btn btn-primary"> <i class="fa fa-search"></i> Search</button>
+    </span>
+</form>
+
+
+
 </html>
+
+
+
+
