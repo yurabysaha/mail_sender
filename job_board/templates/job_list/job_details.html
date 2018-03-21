@@ -7,13 +7,6 @@
                     <h5 class = "well well-lg">{{ job.email_text|linebreaksbr }}</h5>
                 </td>
             </tr>
-            <div class="job">
-                <div class="date">
-                    <p>Created at: {{ job.created_at }} <br>
-                        Updated at: {{ job.updated_at }}</p>
-                </div>
-            </div>
-
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -23,11 +16,11 @@
                     </tr>
                 </thead>
                     <tbody>
-                        {% for email in emails %}
+                        {% for email in job.emails.all %}
                             <tr>
-                              <td>{{ first_name }}</td>
-                              <td>{{ last_name }}</td>
-                              <td>{{ email }}</td>
+                              <td>{{ email.first_name }}</td>
+                              <td>{{ email.last_name }}</td>
+                              <td>{{ email.email }}</td>
                             </tr>
                         {%  endfor %}
                     </tbody>
@@ -35,6 +28,13 @@
              <div>
                 <button type="submit" class="save btn btn-default">Upload csv</button>
                 <button type="submit" class="save btn btn-default">Upload xlsx</button>
+            </div>
+            <br>
+            <div class="job">
+                <div class="date">
+                    <p>Created at: {{ job.created_at }} <br>
+                        Updated at: {{ job.updated_at }}</p>
+                </div>
             </div>
         {% endblock %}
 </html>
