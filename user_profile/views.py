@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import MyUser
-from django.contrib.auth import login, logout
+from .forms import ProfileForm
+from django.contrib.auth import login, logout, update_session_auth_hash
+from django.contrib.auth.forms import SetPasswordForm, PasswordChangeForm
 
 
 def registration(request):
@@ -25,4 +27,19 @@ def log_in(request):
 def log_out(request):
     logout(request)
     return redirect('/user/login/')
-  
+
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(data=request.POST, instance=request.user)
+
+        if form.is_valid():
+            update = form.save(commit=False)
+            update.user = request.user
+            update.save()
+
+            return redirect('/jobs/')
+    else:
+        form = ProfileForm(instance=request.user)
+
+    return render(request, 'mail_sender/edit_profile.html', {'form': form})
