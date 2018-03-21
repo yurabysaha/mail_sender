@@ -2,7 +2,7 @@
     <head>
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
             <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-            <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css"
+            <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
     </head>
     {% block content %}
         <div>
@@ -12,7 +12,8 @@
         <tr>
             <td class="list-group">
                 <h3> <a href="#" class="list-group-item active">{{ job.title }}</a></h3>
-                <h5 class = "well well-lg">{{ job.email_text|linebreaksbr }}</h5></td>
+                <h5 class = "well well-lg">{{ job.email_text|linebreaksbr }}</h5>
+            </td>
         </tr>
         <div class="job">
             <div class="date">

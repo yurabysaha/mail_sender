@@ -1,9 +1,7 @@
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .forms import JobForm
 from .models import Job
-from email_service.models import Email
 
 
 def job_list(request):
@@ -52,5 +50,3 @@ def job_edit(request, job_id):
 def job_detail(request, job_id):
     job = get_object_or_404(Job, id=job_id)
     return render(request, 'job_list/job_details.html', {'job': job})
-
-
