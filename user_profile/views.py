@@ -34,9 +34,7 @@ def edit_profile(request):
         form = ProfileForm(data=request.POST, instance=request.user)
 
         if form.is_valid():
-            update = form.save(commit=False)
-            update.user = request.user
-            update.save()
+            form.save()
 
             return redirect('/jobs/')
     else:
