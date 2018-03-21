@@ -1,0 +1,55 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+    <a href="create" type="button" class="btn btn-default">Сreate</a>
+            <nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1">List of the jobs</span>
+
+</nav>
+     <table class="table table-hover">
+         {% for job in jobs %}
+
+    <tr>
+       <td scope="col"><a href="{{ job.id }}">{{ job.title }}</a></td>
+       <td>{{ job.created_at }}</td>
+       <td><a type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Delete</a>
+
+           <form method="POST" action="/jobs/{{ job.id }}/delete/"> {% csrf_token %}
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Confirmation deleting.</h4>
+        </div>
+        <div class="modal-body">
+            <p>You want to delete the {{ job.title }}?</p>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" value="Confirm" class="btn btn-warning">
+
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </form>
+      <a href="{{ job.id }}/edit" type="button" class="btn btn-default">Edit</a></td>
+    </tr>
+         {% endfor %}
+    </table>
+    </body>
+</html>

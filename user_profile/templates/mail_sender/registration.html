@@ -1,0 +1,28 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+{% block registration %}
+{% if not user.is_authenticated %}
+<div class="large-offset-3 large-6 columns">
+	<form action="/user/registration/" method="post">
+		{% csrf_token %}
+		<label for="username">Email</label>
+		<input type="text" name="username", id="username">
+		<label for="password">Password</label>
+		<input type="text" name="password", id="password">
+		{% if login_error %}
+			<label class="error">{{ login_error }}</label>
+		{% endif %}
+		<input class="button" type="submit" value="Registration">
+		<div class="label round secondary"><a href="/user/login/">Login</a></div>
+	</form>
+</div>
+{% else %}
+
+	Welcome {{ user.email }}
+	<a href="/user/logout/">Logout</a>
+
+{% endif %}
+
+{% endblock %}
