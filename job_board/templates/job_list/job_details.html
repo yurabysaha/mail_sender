@@ -1,10 +1,7 @@
-<html>
-    <head>
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-            <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-    </head>
+{% extends 'base.html' %}
+
     {% block content %}
+
         <div>
             <button type="submit" class="save btn btn-default">Upload csv</button>
             <button type="submit" class="save btn btn-default">Upload xlsx</button>
@@ -21,5 +18,5 @@
                     Updated at: {{ job.updated_at }}</p>
             </div>
         </div>
+
     {% endblock %}
-</html>
