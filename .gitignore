@@ -8,6 +8,10 @@ venv_sender/
 .idea/
 ./mail_sender/local_settings.py
 
+./email_service/migrations/
+./job_board/migrations/
+./user_profile/migrations/
+
 # User-specific stuff:
 .idea/**/workspace.xml
 .idea/**/tasks.xml
