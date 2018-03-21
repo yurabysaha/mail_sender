@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Mail Sender</title>
+
+      <!-- Load CSS and directory with css file -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" >
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+      <!--link rel="stylesheet" href="{% static 'web/css/index.css' %}" -->
+
+  </head>
+
+  <body>
+
+      <!-- 1) class to make background picture -->
+
+    <div class="view" style="background-image: url('http://www.kinyu-z.net/data/wallpapers/226/1497157.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;
+         height: 850px; display: block;">
+
+      <!-- Navbar parametrs -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">OUR LOGO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+      <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#about">About<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#contact_us">Contact Us</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="user/login">Log in</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="user/registration/">Register</a>
+      </li>
+    </ul>
+      </div>
+     </nav>
+
+        <!-- Content in index page -->
+      <div class="mask rgba-gradient d-flex justify-content-center align-items-center" >
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInLeft; animation-delay: 0.3s;">
+              <h1 class="h1-responsive font-weight-bold mt-sm-5">BEST MAIL SENDER </h1>
+              <hr class="hr-light">
+              <h6 class="mb-4">Special app to make automatic mail sending by your email</h6>
+                <a href="user/registration/"><button type="button" class="btn btn-outline-danger" style="text-align: center;">TRY IT</button></a>
+            </div>
+            <div class="col-md-6 col-xl-5 mt-xl-5 wow fadeInCentre animated" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInCentre; animation-delay: 0.3s;">
+                <!-- image in center of index page -->
+                <img src="http://www.clker.com/cliparts/W/j/m/3/u/z/email-icon-hi.png" alt="" class="img-fluid" style="height: 250px; width: 250px">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <a name="about"><h1 class="h1-responsive font-weight-bold mt-sm-5">How it works? Very simple:</h1></a>
+    </div>
+
+
+<!--Carousel Wrapper--> <!-- Continius when will be ready a skrins of slides -->
+<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" style="margin: 150px; margin-top: 75px;">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-2" data-slide-to="1"></li>
+        <li data-target="#carousel-example-2" data-slide-to="2"></li>
+        <li data-target="#carousel-example-2" data-slide-to="3"></li>
+    </ol>
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+        <!-- First slide -->
+        <div class="carousel-item active">
+            <div class="view">
+                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="">
+                <div class="mask rgba-black-slight"></div>
+            </div>
+            <div class="carousel-caption">
+                <h2 class="h2-responsive" style="color: #003366;">SENDING MAIL</h2>
+                <h3 class="h3-responsive" style="color: #177199;">The massages will be automaticly sended to adresses from your account!S</h3>
+            </div>
+        </div>
+        <!-- Second slide -->
+        <div class="carousel-item">
+            <div class="view">
+                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="">
+                <div class="mask rgba-black-light"></div>
+            </div>
+            <!--  -->
+            <div class="carousel-caption">
+                <h2 class="h2-responsive" style="color: #003366;">CREATE JOB</h2>
+                <h3 class="h3-responsive" style="color: #177199;">You can create the job, what's you need!</h3>
+            </div>
+        </div>
+        <!-- Third slide -->
+        <div class="carousel-item">
+            <!--Mask color-->
+            <div class="view">
+                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
+                <div class="mask rgba-black-strong"></div>
+            </div>
+            <div class="carousel-caption">
+                <h2 class="h2-responsive" style="color: #003366;">CHOOSE AN E-MAILS</h2>
+                <h3 class="h3-responsive" style="color: #177199;">Add the list of e-mail, where will be send a massege (you can load the tables from .xlx or .cvs! Of course, you can write theme and text personaly.</h3>
+            </div>
+        </div>
+        <!-- Fourth slide -->
+        <div class="carousel-item">
+            <!--Mask color-->
+            <div class="view">
+                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
+                <div class="mask rgba-black-slight"></div>
+            </div>
+            <div class="carousel-caption">
+                <h2 class="h3-responsive" style="color: #177199;">SENDING MAIL</h2>
+                <h3 class="h3-responsive" style="color: ">The massages will be automaticly sended to adresses from your account!S</h3>
+            </div>
+        </div>
+    </div>
+    <!--/.Slides-->
+    <!--Controls-->
+     <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+     </a>
+     <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+     </a>
+    <!--/.Controls-->
+    </div>
+
+    <div class="container">
+        <a name="contact_us"><h1 class="h1-responsive"><strong>Contact us:</strong></h1></a>
+    </div>
+
+  <div class="container" style="margin-bottom: 25px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="card card-cascade">
+    <!--Card image-->
+                    <div class="view overlay">
+                        <img src="https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/26165687_1726010994132628_5534311752028690987_n.jpg?_nc_cat=0&oh=51b5e42b0c8294dccd6cc13dd18e6c22&oe=5B360822" class="img-fluid" alt="">
+                        <a>
+                        <div class="mask rgba-white-slight"></div>
+                        </a>
+                    </div>
+    <!--Yura-->
+                    <div class="card-body text-center">
+                        <h4 class="card-title"><strong>Yura Bysaha</strong></h4>
+                        <h5>Web developer/Team Leader</h5>
+                 <!--Facebook-->
+                        <a type="button" class="btn btn-outline-info btn-rounded waves-effect" href="https://www.facebook.com/bysaha?lst=100005202497890%3A100001712335236%3A1521579084"><img src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview-400x400.png" height="35px" width="35px"></a>
+       <!--Linkedin-->
+                        <a type="button" class="btn btn-outline-info btn-rounded waves-effect" href="https://www.linkedin.com/in/yura-bysaha-b15a16b2/"><img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-512.png" height="35px" width="35px"></a>
+
+                    </div>
+                </div>
+            </div>
+    <div class="col-sm">
+      Одна из трёх колонок
+    </div>
+    <div class="col-sm">
+      Одна из трёх колонок
+    </div>
+  </div>
+</div>
+
+
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  </body>
+</html>
