@@ -6,15 +6,9 @@ from .models import Job
 from email_service.models import Email
 
 
-
-
 def job_list(request):
-    if request.GET.get("q", None):
-        jobs=Job.objects.filter(title__icontains=request.GET.get("q"))
-    else:
-        jobs = Job.objects.filter().order_by('created_at')
+    jobs = Job.objects.filter(created_at__lte = timezone.now()).order_by('created_at')
     return render(request, 'job_list/job_list.html', {'jobs': jobs})
-
 
 
 def job_delete(request, job_id):
@@ -58,34 +52,5 @@ def job_edit(request, job_id):
 def job_detail(request, job_id):
     job = get_object_or_404(Job, id=job_id)
     return render(request, 'job_list/job_details.html', {'job': job})
-
-
-
-def search_job(request):
-    job_list = Job.objects.all()
-    search_jobs = request.GET.get("q", None)
-    if search_jobs:
-        job_list = job_list.filter(title__icontains=search_jobs)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
