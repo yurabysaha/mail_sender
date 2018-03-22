@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 from . import views
 
@@ -8,11 +7,4 @@ urlpatterns = [
     path('create', views.job_create, name = "create job"),
     path('<int:job_id>/edit', views.job_edit),
     path('<int:job_id>/', views.job_detail, name='job_detail'),
-
-
-
 ]
-
-
-
-
