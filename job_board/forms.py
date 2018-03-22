@@ -13,12 +13,14 @@ class JobForm(forms.ModelForm):
             'email_text':forms.Textarea(attrs={'class': 'form-control'})
         }
 
+
 class AddEmailForm(forms.ModelForm):
 
     class Meta:
         model = Email
-        fields = ('email', 'first_name',)
+        fields = ('email', 'first_name', 'last_name',)
         widgets = {
             'email': forms.TextInput(attrs={'class': 'form-control'}),
-            'first_name': forms.TextInput(attrs={'class': 'form-control'})
+            'first_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'last_name': forms.TextInput(attrs={'class': 'form-control'})
         }

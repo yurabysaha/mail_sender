@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.utils import timezone
 from .forms import JobForm, AddEmailForm
 from .models import Job
@@ -56,13 +56,17 @@ def job_detail(request, job_id):
 def add_email(request, job_id):
     job = get_object_or_404(Job, id=job_id)
     if request.method == "POST":
-        email = Email.objects.create(email=request.POST['email'], first_name=request.POST['first_name'], job=job)
+        email = Email.objects.create(email=request.POST['email'],
+                                     first_name=request.POST['first_name'],
+                                     last_name=request.POST['last_name'], job=job)
         form = AddEmailForm(request.POST, instance=email)
         if form.is_valid():
             form.save()
-            return redirect('jobs')
+            back_to_job = request.POST.get('back_to_job', '/jobs/{}'.format(job_id))
+            return HttpResponseRedirect(back_to_job)
 
     else:
         form = AddEmailForm(instance=job)
 
     return render(request, 'job_list/job_add_email.html', {'form': form})
+
