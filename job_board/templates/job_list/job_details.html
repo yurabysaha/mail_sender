@@ -1,5 +1,4 @@
-<html>
-    {% extends 'base.html' %}
+ {% extends 'base.html' %}
         {% block content %}
             <tr>
                 <td class="list-group">
@@ -28,13 +27,13 @@
              <div>
                 <button type="submit" class="save btn btn-default">Upload csv</button>
                 <button type="submit" class="save btn btn-default">Upload xlsx</button>
+                <a href="add_email/"><button type="button" class="btn btn-default" data-dismiss="modal">Add Emails</button></a>
             </div>
-            <br>
-            <div class="job">
-                <div class="date">
+              <br>
+                <div class="job">
+                  <div class="date">
                     <p>Created at: {{ job.created_at }} <br>
                         Updated at: {{ job.updated_at }}</p>
                 </div>
             </div>
         {% endblock %}
-</html>
