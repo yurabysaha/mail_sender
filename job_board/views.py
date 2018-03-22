@@ -56,15 +56,16 @@ def job_detail(request, job_id):
 def add_email(request, job_id):
     job = get_object_or_404(Job, id=job_id)
     if request.method == "POST":
-        email = Email.objects.create(email=request.POST['email'],
-                                     first_name=request.POST['first_name'],
-                                     last_name=request.POST['last_name'], job=job)
+        email = Email(email=request.POST['email'],
+                      first_name=request.POST['first_name'],
+                      last_name=request.POST['last_name'],
+                      job=job )
         form = AddEmailForm(request.POST, instance=email)
         if form.is_valid():
             form.save()
-            back_to_job = request.POST.get('back_to_job', '/jobs/{}'.format(job_id))
-            return HttpResponseRedirect(back_to_job)
-
+            # return render(request, 'job_list/job_details.html', {'job': job})
+            # Через редірект краще, але якшо хочеш розкоментуй строку вище :)
+            return redirect('/jobs/{}'.format(job_id))
     else:
         form = AddEmailForm(instance=job)
 
