@@ -1,12 +1,22 @@
+
 {% extends 'base.html' %}
 
     {% block content %}
+
 
     <a href="create" type="button" class="btn btn-default">Сreate</a>
             <nav class="navbar navbar-light bg-light">
   <span class="navbar-brand mb-0 h1">List of the jobs</span>
 
 </nav>
+
+<form class="input-group" action="{% url 'jobs' %}" method="GET" >
+    <input type="text" placeholder="Search jobs by title " class="input form-control" name="q" value='{{ request.GET.q }}'>
+    <span class="input-group-btn">
+            <button type="submit" class="btn btn btn-primary"> <i class="fa fa-search"></i> Search</button>
+    </span>
+</form>
+
      <table class="table table-hover">
          {% for job in jobs %}
 
@@ -15,29 +25,29 @@
        <td>{{ job.created_at }}</td>
        <td><a type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Delete</a>
 
-           <form method="POST" action="/jobs/{{ job.id }}/delete/"> {% csrf_token %}
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+       <form method="POST" action="/jobs/{{ job.id }}/delete/"> {% csrf_token %}
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Confirmation deleting.</h4>
-        </div>
-        <div class="modal-body">
-            <p>You want to delete the {{ job.title }}?</p>
-        </div>
-        <div class="modal-footer">
-            <input type="submit" value="Confirm" class="btn btn-warning">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Confirmation deleting.</h4>
+                  </div>
+                  <div class="modal-body">
+                      <p>You want to delete the {{ job.title }}?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <input type="submit" value="Confirm" class="btn btn-warning">
 
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
 
-    </div>
-  </div>
-  </form>
+              </div>
+            </div>
+          </form>
       <a href="{{ job.id }}/edit" type="button" class="btn btn-default">Edit</a></td>
     </tr>
          {% endfor %}
