@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponseRedirect
 from django.utils import timezone
-from .forms import JobForm
+from .forms import JobForm, AddEmailForm
 from .models import Job
+from email_service.models import Email
 
 
 def job_list(request):
@@ -65,10 +66,30 @@ def job_edit(request, job_id):
 
 
 def job_detail(request, job_id):
-    if request.user.is_authenticated:
-
-        job = get_object_or_404(Job, id=job_id)
-        return render(request, 'job_list/job_details.html', {'job': job})
-    else:
+if request.user.is_authenticated:
+    job = get_object_or_404(Job, id=job_id)
+    return render(request, 'job_list/job_details.html', {'job': job})
+else:
         return redirect('login')
 
+def add_email(request, job_id):
+  if request.user.is_authenticated:
+      job = get_object_or_404(Job, id=job_id)
+      if request.method == "POST":
+          email = Email(email=request.POST['email'],
+                        first_name=request.POST['first_name'],
+                        last_name=request.POST['last_name'],
+                        job=job )
+          form = AddEmailForm(request.POST, instance=email)
+          if form.is_valid():
+              form.save()
+              # return render(request, 'job_list/job_details.html', {'job': job})
+              # Через редірект краще, але якшо хочеш розкоментуй строку вище :)
+              return redirect('/jobs/{}'.format(job_id))
+    else:
+        form = AddEmailForm(instance=job)
+
+    return render(request, 'job_list/job_add_email.html', {'form': form})
+  else:
+        return redirect('login')
+    

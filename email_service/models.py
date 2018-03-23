@@ -1,5 +1,4 @@
 from django.db import models
-
 from job_board.models import Job
 
 
