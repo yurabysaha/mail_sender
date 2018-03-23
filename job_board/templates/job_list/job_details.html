@@ -2,32 +2,50 @@
 
     {% block content %}
 
-        <div class="container-fliud" style="margin-top: 15px;">
-                    <div class="p-3 mb-2 bg-info text-white">
-                        <h3 > {{ job.title }}</h3>
-                        <h5> Created at: {{ job.created_at }} </h5>
-                        <h5> Updated at: {{ job.updated_at }} </h5>
-                    </div>
-        </div>
 
-        <div class="container-fliud" style="margin-top: 15px;">
-            <div class="row ">
-            <div class="col-6 text-center">
-                <div class="center-block">
-                    <h1 class="text-info"> Text of Email</h1>
-                    <h5> {{ job.email_text|linebreaksbr }} </h5>
-                </div>
+    <div class="air-card air-card m-0-left m-0-top p-0-top-bottom" style="margin-top: 15px;">
+        <div class="container">
+            <div class="p-3 mb-2 bg-info text-white">
+                <h2 > {{ job.title }}</h2>
             </div>
-            <div class="col-6 text-center">
-                <div>
-                    <h1 class="text-info">Sending to e-mails:</h1>
+            <div class="row">
+                <div class="col-md-8" style="border-right: 1px solid #9a9a9a">
+                    <div class="m-0-top m-0-right">
+                        <div class="container text-center">
+                            <h4> Text of the email</h4>
+                        </div>
+                        <div class="container text-center">
+                            <p> {{ job.email_text|linebreaksbr }} </p>
+                        </div>
+                        <div class="container text-center">
+                           <button type="submit" class="btn btn-outline-info btn-rounded waves-effect">Edit text</button>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="col-md-4">
+
+                    <ul class="m-sm-right" style="margin-top: 25px;">
+                        <small class="text-muted">  Created:</small>
+                        <p>{{ job.created_at }} </p>
+                        <small class="text-muted"> Updated:  </small>
+                        <p> {{ job.updated_at }} </p>
+                    </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="container" style="margin-top: 25px; border-top: 1px solid #9a9a9a;">
+                <h4 style="margin-top: 25px;"> Sending to emails:</h4>
+            </div>
+            <div class="container" style="margin-top: 15px;">
+                <div class="container">
                 <table class="table table-condensed text-center">
                     <thead>
                         <tr class="text-info">
                             <th>First name</th>
                             <th>Last name</th>
-                            <th style="width: 350px">E-mail</th>
+                            <th>E-mail</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,20 +58,19 @@
                         {%  endfor %}
                     </tbody>
                 </table>
-                <div class="row">
-                    <div class="col-6 text-center">
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <a href="add_email/"><button type="button" class="btn btn-outline-info btn-rounded waves-effect" data-dismiss="modal">Add Emails</button></a>
+                    </div>
+                    <div class="col-md-4">
                         <button type="submit" class="btn btn-outline-info btn-rounded waves-effect">Upload .csv</button>
                     </div>
-                    <div class="col-6 text-center">
+                    <div class="col-md-4">
                         <button type="submit" class="btn btn-outline-info btn-rounded waves-effect">Upload .xlsx</button>
                     </div>
-                    <div class="col-6 text-center">
-                        <a href="add_email/"><button type="button" class="btn btn-default" data-dismiss="modal">Add Emails</button></a>
-                    </div>
-
                 </div>
             </div>
-            </div>
-        </div>
+    </div>
 
     {% endblock %}
