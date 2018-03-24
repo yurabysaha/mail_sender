@@ -1,188 +1,327 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <title>Mail Sender</title>
-
-      <!-- Load CSS and directory with css file -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" >
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-      <!--link rel="stylesheet" href="{% static 'web/css/index.css' %}" -->
-
-  </head>
-
-  <body>
-
-      <!-- 1) class to make background picture -->
-
-    <div class="view" style="background-image: url('http://www.kinyu-z.net/data/wallpapers/226/1497157.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center center;
-         height: 850px; display: block;">
-
-      <!-- Navbar parametrs -->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">OUR LOGO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-      <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="#about">About<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#contact_us">Contact Us</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="user/login">Log in</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="user/registration/">Register</a>
-      </li>
-    </ul>
-      </div>
-     </nav>
-
-        <!-- Content in index page -->
-      <div class="mask rgba-gradient d-flex justify-content-center align-items-center" >
-        <div class="container">
-          <div class="row">
-            <div class="col-md-6 white-text text-center text-md-left mt-xl-5 mb-5 wow fadeInLeft animated" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInLeft; animation-delay: 0.3s;">
-              <h1 class="h1-responsive font-weight-bold mt-sm-5">BEST MAIL SENDER </h1>
-              <hr class="hr-light">
-              <h6 class="mb-4">Special app to make automatic mail sending by your email</h6>
-                <a href="user/registration/"><button type="button" class="btn btn-outline-danger" style="text-align: center;">TRY IT</button></a>
-            </div>
-            <div class="col-md-6 col-xl-5 mt-xl-5 wow fadeInCentre animated" data-wow-delay="0.3s" style="visibility: visible; animation-name: fadeInCentre; animation-delay: 0.3s;">
-                <!-- image in center of index page -->
-                <img src="http://www.clker.com/cliparts/W/j/m/3/u/z/email-icon-hi.png" alt="" class="img-fluid" style="height: 250px; width: 250px">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container">
-        <a name="about"><h1 class="h1-responsive font-weight-bold mt-sm-5">How it works? Very simple:</h1></a>
-    </div>
+{% load static %}
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Email sender</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/login.css'%}" />
+        <!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
 
 
-<!--Carousel Wrapper--> <!-- Continius when will be ready a skrins of slides -->
-<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" style="margin: 150px; margin-top: 75px;">
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-2" data-slide-to="1"></li>
-        <li data-target="#carousel-example-2" data-slide-to="2"></li>
-        <li data-target="#carousel-example-2" data-slide-to="3"></li>
-    </ol>
-    <!--Slides-->
-    <div class="carousel-inner" role="listbox">
-        <!-- First slide -->
-        <div class="carousel-item active">
-            <div class="view">
-                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="">
-                <div class="mask rgba-black-slight"></div>
-            </div>
-            <div class="carousel-caption">
-                <h2 class="h2-responsive" style="color: #003366;">SENDING MAIL</h2>
-                <h3 class="h3-responsive" style="color: #177199;">The massages will be automaticly sended to adresses from your account!S</h3>
-            </div>
-        </div>
-        <!-- Second slide -->
-        <div class="carousel-item">
-            <div class="view">
-                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).jpg" alt="">
-                <div class="mask rgba-black-light"></div>
-            </div>
-            <!--  -->
-            <div class="carousel-caption">
-                <h2 class="h2-responsive" style="color: #003366;">CREATE JOB</h2>
-                <h3 class="h3-responsive" style="color: #177199;">You can create the job, what's you need!</h3>
-            </div>
-        </div>
-        <!-- Third slide -->
-        <div class="carousel-item">
-            <!--Mask color-->
-            <div class="view">
-                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).jpg" alt="Second slide">
-                <div class="mask rgba-black-strong"></div>
-            </div>
-            <div class="carousel-caption">
-                <h2 class="h2-responsive" style="color: #003366;">CHOOSE AN E-MAILS</h2>
-                <h3 class="h3-responsive" style="color: #177199;">Add the list of e-mail, where will be send a massege (you can load the tables from .xlx or .cvs! Of course, you can write theme and text personaly.</h3>
-            </div>
-        </div>
-        <!-- Fourth slide -->
-        <div class="carousel-item">
-            <!--Mask color-->
-            <div class="view">
-                <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).jpg" alt="Third slide">
-                <div class="mask rgba-black-slight"></div>
-            </div>
-            <div class="carousel-caption">
-                <h2 class="h3-responsive" style="color: #177199;">SENDING MAIL</h2>
-                <h3 class="h3-responsive" style="color: ">The massages will be automaticly sended to adresses from your account!S</h3>
-            </div>
-        </div>
-    </div>
-    <!--/.Slides-->
-    <!--Controls-->
-     <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-     </a>
-     <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-     </a>
-    <!--/.Controls-->
-    </div>
+        <!--For Plugins external css-->
+        <link rel="stylesheet" href="{% static 'css/plugins.css'%}" />
+        <link rel="stylesheet" href="{% static 'css/roboto-webfont.css'%}" />
 
-    <div class="container">
-        <a name="contact_us"><h1 class="h1-responsive"><strong>Contact us:</strong></h1></a>
-    </div>
+        <!--Theme custom css -->
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
 
-  <div class="container" style="margin-bottom: 25px;">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm">
-                <div class="card card-cascade">
-    <!--Card image-->
-                    <div class="view overlay">
-                        <img src="https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/26165687_1726010994132628_5534311752028690987_n.jpg?_nc_cat=0&oh=51b5e42b0c8294dccd6cc13dd18e6c22&oe=5B360822" class="img-fluid" alt="">
-                        <a>
-                        <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-    <!--Yura-->
-                    <div class="card-body text-center">
-                        <h4 class="card-title"><strong>Yura Bysaha</strong></h4>
-                        <h5>Web developer/Team Leader</h5>
-                 <!--Facebook-->
-                        <a type="button" class="btn btn-outline-info btn-rounded waves-effect" href="https://www.facebook.com/bysaha?lst=100005202497890%3A100001712335236%3A1521579084"><img src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview-400x400.png" height="35px" width="35px"></a>
-       <!--Linkedin-->
-                        <a type="button" class="btn btn-outline-info btn-rounded waves-effect" href="https://www.linkedin.com/in/yura-bysaha-b15a16b2/"><img src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-512.png" height="35px" width="35px"></a>
+        <!--Theme Responsive css-->
+        <link rel="stylesheet" href="{% static 'css/responsive.css'%}" />
+
+        <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js'%}"></script>
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+		<div class='preloader'><div class='loaded'>&nbsp;</div></div>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="{% static 'images/logo.png'%}" alt="Logo" /></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="#home">Home</a></li>
+                        <li><a href="#product">PRODUCT</a></li>
+                        <li><a href="#features">Description</a></li>
+                        <li><a href="#service">Service</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li class="login"><a href="user/registration/">Sign Up</a></li>
+                    </ul>
+
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <!--Home page style-->
+        <header id="home" class="home">
+            <div class="overlay-fluid-block">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="home-wrapper">
+                            <div class="col-md-10 col-md-offset-1">
+                                <div class="home-content">
+                                    <h1>Do your email marketing with mail sender</h1>
+                                    <p>Email sender transforms your company's email marketing into automatic process so you can focus on what matters to you. Stay in the know, spot trends as they happen, and push your business further.</p>
+                                </div>
+                                    <div class="container center_div" >
+                                        <div class="row">
+                                            <div class="col-md-4 col-md-offset-4">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">
+                                                        <h3 class="panel-title">Please sign in</h3>
+                                                    </div>
+                                                        <div class="panel-body">
+
+                                                            <form accept-charset="UTF-8" role="form" action="/user/login/" method="post"> {% csrf_token %}
+                                                            <fieldset>
+                                                                <div class="form-group">
+                                                                    <input class="form-control" placeholder="E-mail" name="username" type="text">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                                                </div>
+                                                                <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+                                                                {% if login_error %}
+                                                                <label class="error">{{ login_error }}</label>
+                                                                {% endif %}
+                                                            </fieldset>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                </header>
+
+        <!-- Sections -->
+        <section id="product" class="features sections">
+            <div class="container ">
+                <div class="row">
+                    <div class="main_features_content2">
+
+                        <div class="col-sm-6">
+                            <div class="single_features_left text-center">
+                                <img src="{% static 'images/feature-2.jpg'%}" alt="" />
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 margin-top-60">
+                            <div class="single_features_right ">
+                                <h2>OUR PRODUCT</h2>
+                                <p>Email sender is a unigue tool which will help you to spend more time on creatting things and leave boring job for programm.</p>
+                                <ul>
+                                    <li>Fast sending the email.</li>
+                                    <li>You just need to upload a data.</li>
+                                    <li>You just need to prepare the mail.</li>
+                                </ul>
+                                <div class="features_buttom">
+                                    <a href="" class="btn btn-default">Read More</a>
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                 </div>
             </div>
-    <div class="col-sm">
-      Одна из трёх колонок
-    </div>
-    <div class="col-sm">
-      Одна из трёх колонок
-    </div>
-  </div>
-</div>
+        </section><!--End of Features 2 Section -->
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <section id="features" class="features sections">
+            <div class="container">
+                <div class="row">
+                    <div class="main_features_content2">
+                        <div class="col-sm-6 margin-top-60">
+                            <div class="single_features_right ">
+                                <h2>PRODUCT DESCRIPTIONS</h2>
+                                <p>Comfortable, user-friendly and easy to use - it all about mail sender</p>
+                                    <li>Start with email sender easy.</li>
+                                    <li>Work with email sender even easier.</li>
+                                    <li>Choose our email service.</li>
+                                </ul>
+                            </div>
+                        </div>
+                         <div class="col-sm-6">
+                            <div class="single_features_left text-center">
+                                <img src="{% static 'images/feature-1.jpg'%}" alt="" />
+                            </div>
+                        </div>
 
-  </body>
+                    </div>
+                </div>
+            </div>
+        </section><!--End of Features 2 Section -->
+
+
+        <section id="service" class="service2 sections lightbg">
+            <div class="container">
+                <div class="row">
+                    <div class="main_service2">
+                        <div class="head_title text-center">
+                            <h2>SERVICES WE PROVIDE</h2>
+                            <p>Email marketing for sales, recruitment and sharing information.</p>
+                        </div>
+
+                        <div class="service_content">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="single_service2">
+                                    <div class="single_service_left">
+                                        <img src="{% static 'images/flaticon1.png'%}" alt="" />
+                                    </div>
+                                    <div class="single_service_right">
+                                        <h2>Sales</h2>
+                                        <p>Do you sales with powerfull target email marketing.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="single_service2">
+                                    <div class="single_service_left">
+                                       <img src="{% static 'images/flaticon2.png'%}" alt="" />
+                                    </div>
+                                    <div class="single_service_right">
+                                        <h2>Reacruitment</h2>
+                                        <p>Do your recruitment with email service. All you need is the list of candidates.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="single_service2">
+                                    <div class="single_service_left">
+                                      <img src="{% static 'images/flaticon3.png' %}" alt="" />
+                                    </div>
+                                    <div class="single_service_right">
+                                        <h2>Marketing</h2>
+                                        <p>Do you marketing with email service.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="single_service2">
+                                    <div class="single_service_left">
+                                        <img src="{% static 'images/flaticon4.png'%}" alt="" />
+                                    </div>
+                                    <div class="single_service_right">
+                                        <h2>No spam</h2>
+                                        <p>Just don't do spamming.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End of Service2 Section -->
+
+        <section id="contact" class="contact sections">
+            <div class="container">
+                <div class="row">
+                    <div class="main_contact whitebackground">
+                        <div class="head_title text-center">
+                            <h2>GET IN TOUCH</h2>
+							<p> Please contact us to get a free tour and use email tool. We are open to feedback and expect your questions</p>
+                        </div>
+                        <div class="contact_content">
+                            <div class="col-md-6">
+                                <div class="single_left_contact">
+                                    <form action="#" id="formid">
+
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="name" placeholder="first name" required="">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" name="email" placeholder="Email" required="">
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <textarea class="form-control" name="message" rows="8" placeholder="Message"></textarea>
+                                        </div>
+
+                                        <div class="center-content">
+                                            <input type="submit" value="Submit" class="btn btn-default">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="single_right_contact">
+                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede.</p>
+
+                                    <div class="contact_address margin-top-40">
+                                        <span>1600 Pennsylvania Ave NW, Washington,</span>
+                                        <span>DC 20500, United States of America.</span>
+                                        <span class="margin-top-20">T: (202) 456-1111</span>
+                                        <span>M: (202) 456-1212</span>
+                                    </div>
+
+                                    <div class="contact_socail_bookmark">
+                                        <a href=""><i class="fa fa-facebook"></i></a>
+                                        <a href=""><i class="fa fa-twitter"></i></a>
+                                        <a href=""><i class="fa fa-google"></i></a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End of Contact Section -->
+
+
+
+        <!--Footer-->
+        <footer id="footer" class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-wrapper">
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="footer-brand">
+                                <img src="{% static 'images/logo.png'%}" alt="logo" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="copyright">
+                                <p>Made with <i class="fa fa-heart"></i> by <a target="_blank" href="http://bootstrapthemes.co"> Bootstrap Themes </a>2016. All rights reserved.</p>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+		<div class="scrollup">
+			<a href="#"><i class="fa fa-chevron-up"></i></a>
+		</div>
+
+
+        <script src="{% static 'js/vendor/jquery-1.11.2.min.js'%}"></script>
+        <script src="{% static 'js/vendor/bootstrap.min.js'%}"></script>
+
+        <script src="{% static 'js/plugins.js' %}"></script>
+        <script src="{% static 'js/modernizr.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+    </body>
 </html>
