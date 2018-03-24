@@ -10,7 +10,7 @@ def job_list(request):
         jobs = Job.objects.filter(created_at__lte = timezone.now()).order_by('created_at')
         return render(request, 'job_list/job_list.html', {'jobs': jobs})
     else:
-        return redirect('login')
+        return redirect('/')
 
 
 def job_delete(request, job_id):
@@ -26,7 +26,7 @@ def job_delete(request, job_id):
 
         return render(request, "job_list/job_list.html", context)
     else:
-        return redirect('login')
+        return redirect('/')
 
 
 def job_create(request):
@@ -44,7 +44,7 @@ def job_create(request):
         return render(request, 'job_list/job_create.html', {'form': form})
 
     else:
-        return redirect('login')
+        return redirect('/')
 
 
 def job_edit(request, job_id):
@@ -60,7 +60,7 @@ def job_edit(request, job_id):
             form = JobForm(instance=job)
         return render(request, 'job_list/job_edit.html', {'form': form})
     else:
-        return redirect('login')
+        return redirect('/')
 
 
 def job_detail(request, job_id):
@@ -68,7 +68,7 @@ def job_detail(request, job_id):
         job = get_object_or_404(Job, id=job_id)
         return render(request, 'job_list/job_details.html', {'job': job})
     else:
-            return redirect('login')
+        return redirect('/')
 
 
 def add_email(request, job_id):

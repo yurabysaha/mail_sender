@@ -21,12 +21,12 @@ def log_in(request):
             login(request, user)
             return redirect('/jobs/')
     else:
-        return render(request, 'mail_sender/login.html')
+        return redirect("/")
 
 
 def log_out(request):
     logout(request)
-    return redirect('/user/login/')
+    return redirect('/')
 
 
 def edit_profile(request):
