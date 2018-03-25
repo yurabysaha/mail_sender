@@ -55,7 +55,31 @@
                               <td>{{ email.last_name }}</td>
                               <td>{{ email.email }}</td>
                               <td> <a href="edit_email/{{ email.id }}" type="button" class="btn btn-default">Edit Email</a></td>
+                              <td><a type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Delete</a>
 
+                                             <form method="POST" action="/jobs/{{ job.id }}/{{ email.id }}/delete/"> {% csrf_token %}
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="myModal" role="dialog">
+                                      <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h4 class="modal-title">Confirmation deleting.</h4>
+                                          </div>
+                                          <div class="modal-body">
+                                              <p>You want to delete the {{ email.email }}?</p>
+                                          </div>
+                                          <div class="modal-footer">
+                                              <input type="submit" value="Confirm" class="btn btn-warning">
+
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                    </form>
                             </tr>
                         {%  endfor %}
                     </tbody>

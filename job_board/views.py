@@ -106,3 +106,17 @@ def edit_email(request, email_id, job_id):
     else:
         return redirect('login')
 
+
+def delete_email(request, email_id, job_id):
+    if request.user.is_authenticated:
+        email = get_object_or_404(Email, id=email_id)
+        if request.method == "POST":
+            email.delete()
+            return redirect('/jobs/{}'.format(job_id))
+
+        return render(request, "job_list/job_details.html", context)
+
+
+    else:
+        return redirect('login')
+
