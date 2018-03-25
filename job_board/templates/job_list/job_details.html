@@ -54,6 +54,8 @@
                               <td>{{ email.first_name }}</td>
                               <td>{{ email.last_name }}</td>
                               <td>{{ email.email }}</td>
+                              <td> <a href="edit_email/{{ email.id }}" type="button" class="btn btn-default">Edit Email</a></td>
+
                             </tr>
                         {%  endfor %}
                     </tbody>

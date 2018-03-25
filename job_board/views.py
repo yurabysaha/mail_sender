@@ -82,11 +82,27 @@ def add_email(request, job_id):
               form = AddEmailForm(request.POST, instance=email)
               if form.is_valid():
                   form.save()
-                  # return render(request, 'job_list/job_details.html', {'job': job})
-                  # Через редірект краще, але якшо хочеш розкоментуй строку вище :)
                   return redirect('/jobs/{}'.format(job_id))
           else:
               form = AddEmailForm(instance=job)
               return render(request, 'job_list/job_add_email.html', {'form': form})
     else:
         return redirect('login')
+
+
+def edit_email(request, email_id, job_id):
+    if request.user.is_authenticated:
+
+        email = get_object_or_404(Email, id=email_id)
+        if request.method == "POST":
+            form = AddEmailForm(request.POST, instance=email)
+            if form.is_valid():
+                form.save()
+                return redirect('/jobs/{}'.format(job_id))
+        else:
+            form = AddEmailForm(instance=email)
+            return render(request, 'job_list/job_email_edit.html', {'form': form})
+
+    else:
+        return redirect('login')
+
