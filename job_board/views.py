@@ -8,6 +8,7 @@ from email_service.models import Email
 def job_list(request):
     if request.user.is_authenticated:
         jobs = Job.objects.filter(created_at__lte = timezone.now()).order_by('created_at')
+
         return render(request, 'job_list/job_list.html', {'jobs': jobs})
     else:
         return redirect('/')
@@ -119,4 +120,3 @@ def delete_email(request, email_id, job_id):
 
     else:
         return redirect('login')
-

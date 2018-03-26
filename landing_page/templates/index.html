@@ -87,10 +87,10 @@
                                                             <form accept-charset="UTF-8" role="form" action="/user/login/" method="post"> {% csrf_token %}
                                                             <fieldset>
                                                                 <div class="form-group">
-                                                                    <input class="form-control" placeholder="E-mail" name="username" type="text">
+                                                                    <input class="form-control" placeholder="E-mail" name="username" type="text" required>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                                                    <input class="form-control" placeholder="Password" name="password" type="password" value="" required>
                                                                 </div>
                                                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
                                                                 {% if login_error %}
