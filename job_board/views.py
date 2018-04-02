@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .forms import JobForm, AddEmailForm
 from .models import Job
+from user_profile.models import MyUser
 from email_service.models import Email
 
 
 def job_list(request):
     if request.user.is_authenticated:
-        jobs = Job.objects.filter(created_at__lte = timezone.now()).order_by('created_at')
-
+        jobs = Job.objects.filter(user=request.user)
         return render(request, 'job_list/job_list.html', {'jobs': jobs})
     else:
         return redirect('/')
