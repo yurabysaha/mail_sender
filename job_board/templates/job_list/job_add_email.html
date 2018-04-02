@@ -1,9 +1,19 @@
-{% block content %}
+{% extends 'base.html' %}
 
-            <h1>Add Email</h1>
-            <form method="POST" class="form-group">{% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="save btn btn-default">Save</button>
-            </form>
+        {% block content %}
+
+            <div class="air-card air-card m-0-left m-0-top p-0-top-bottom" style="margin-top: 15px;">
+                <div class="container">
+                    <div class="p-3 mb-2 bg-info text-white">
+                        <h2 > Add Email</h2>
+                    </div>
+                    <form method="POST" class="form-group">{% csrf_token %}
+                        {{ form.as_p }}
+                    <div class="text-center">
+                        <button class="btn btn-outline-info" type="submit">Save<i class="fa fa-paper-plane-o ml-2"></i></button>
+                    </div>
+                </form>
+                </div>
+            </div>
 
         {% endblock %}
