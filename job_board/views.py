@@ -67,7 +67,20 @@ def job_edit(request, job_id):
 def job_detail(request, job_id):
     if request.user.is_authenticated:
         job = get_object_or_404(Job, id=job_id)
-        return render(request, 'job_list/job_details.html', {'job': job})
+        form = AddEmailForm(request.POST)
+        if request.method == "POST":
+            email = Email(email=request.POST['email'],
+                          first_name=request.POST['first_name'],
+                          last_name=request.POST['last_name'],
+                          job=job)
+            form = AddEmailForm(request.POST, instance=email)
+            if form.is_valid():
+                form.save()
+                return redirect('/jobs/{}'.format(job_id))
+            else:
+                form = AddEmailForm(instance=job)
+
+        return render(request, 'job_list/job_details.html', {'job': job, 'form': form})
     else:
         return redirect('/')
 
