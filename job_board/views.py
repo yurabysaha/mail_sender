@@ -8,6 +8,10 @@ from email_service.models import Email
 
 def job_list(request):
     if request.user.is_authenticated:
+        query = request.GET.get('q')
+        if query:
+            jobs = Job.objects.filter(title__icontains=query)
+            return render(request, 'job_list/job_list.html', {'jobs': jobs})
         jobs = Job.objects.filter(user=request.user)
         return render(request, 'job_list/job_list.html', {'jobs': jobs})
     else:
