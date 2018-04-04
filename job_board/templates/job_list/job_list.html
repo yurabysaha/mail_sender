@@ -5,6 +5,12 @@
     <a href="create" type="button" class="btn btn-default">Сreate</a>
             <nav class="navbar navbar-light bg-light">
   <span class="navbar-brand mb-0 h1">List of the jobs</span>
+
+   <form type="GET" action='' style="margin: 0">
+     <input type="text" name="q"  placeholder="Search..." value="{{ request.GET.q }}"/>
+     <input type="submit" value="Search" />
+   </form>
+
 </nav>
      <table class="table table-hover">
          {% for job in jobs %}
