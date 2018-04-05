@@ -12,13 +12,12 @@ def upload_file(request, job_id):
 
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            parsing_xlsx(request.FILES['file'], request.POST['title'])
+            parsed_data = parsing_xlsx(request.FILES['file'], request.FILES['file'].name.split('.')[0])
 
-            data = csv.reader(open('./media/{}.csv'.format(request.POST['title'])), delimiter=",")
-            for row in data:
-                email = Email(first_name=row[0],
-                              last_name=row[1],
-                              email=row[2],
+            for row in parsed_data:
+                email = Email(first_name=row["first_name"],
+                              last_name=row["last_name"],
+                              email=row['email_adress'],
                               job=job)
                 email.save()
 
