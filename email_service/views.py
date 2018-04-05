@@ -5,21 +5,17 @@ from .parsing_xlsx import parsing_xlsx
 import csv
 from email_service.models import Email
 from job_board.models import Job
-
-
-def handle_uploaded_file(f, title):
-    with open('/Users/viktorgrigorevskiy/Desktop/projects/mail_sender/media/{}.csv'.format(title), 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
+from .parsing_xlsx import parsing_xlsx
 
 
 def upload_file(request, job_id):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_file(request.FILES['file'], request.POST['title'])
+            parsing_xlsx(request.FILES['file'], request.POST['title'])
+            file_name = request.POST['title']
 
-            data = csv.reader(open("/Users/viktorgrigorevskiy/Desktop/projects/mail_sender/created.csv"), delimiter=",")
+            data = csv.reader(open('./media/{}.csv'.format(file_name)), delimiter=",")
             job = get_object_or_404(Job, id=job_id)
 
             for row in data:
