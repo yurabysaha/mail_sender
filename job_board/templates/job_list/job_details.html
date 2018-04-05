@@ -18,7 +18,7 @@
                             <p> {{ job.email_text|linebreaksbr }} </p>
                         </div>
                         <div class="container text-center">
-                           </a><button type="submit" class="btn btn-outline-info btn-rounded waves-effect"><a href="edit">Edit text</a></button>
+                           <a href="edit"><button type="submit" class="btn btn-outline-info btn-rounded waves-effect">Edit text</button></a>
                         </div>
                     </div>
                 </div>
@@ -87,8 +87,32 @@
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
-                        <a href="add_email/"><button type="button" class="btn btn-outline-info btn-rounded waves-effect" data-dismiss="modal">Add Emails</button></a>
+                        <button type="button" class="btn btn-outline-info btn-rounded waves-effect" data-toggle="modal" data-target="#AddEmailModal">
+                                Add Email
+                        </button>
                     </div>
+                    <!-- modal vivw for add email -->
+                    <form method="POST" class="form-group"> {% csrf_token %}
+                        <div class="modal fade" id="AddEmailModal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Add email: </h4>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        {{ form.as_p }}
+
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        <button class="btn btn-outline-info" type="submit">Save<i class="fa fa-paper-plane-o ml-2"></i></button>
+                                        <button type="button" class="btn btn-outline-info" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-outline-info btn-rounded waves-effect">Upload .csv</button>
                     </div>
