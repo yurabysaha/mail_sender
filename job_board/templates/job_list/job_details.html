@@ -115,16 +115,11 @@
                     </form>
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-outline-info btn-rounded waves-effect">Upload .csv</button>
+                        <a href="upload/"><button type="submit" class="btn btn-outline-info btn-rounded waves-effect">Upload .xlsx</button></a>
+
                     </div>
                     <div class="col-md-4">
-                        <form action="{{ request.build_absolute_uri }}" method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <input type="file" name="file"/>
-                            <input type="name", name="filename"/>
-          <div>
-          <input type="submit" value="Upload File" />
-              </div>
-</form>
+
                     </div>
                 </div>
             </div>
