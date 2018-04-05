@@ -1,7 +1,6 @@
 from .forms import UploadFileForm
 from django.shortcuts import render, redirect, get_object_or_404
 from job_board.views import add_email
-from .parsing_xlsx import parsing_xlsx
 import csv
 from email_service.models import Email
 from job_board.models import Job
@@ -25,7 +24,7 @@ def upload_file(request, job_id):
                               job=job)
                 email.save()
 
-            return render(request, "job_list/job_details.html", {'job':job})
+            return redirect('/jobs/{}'.format(job_id))
 
     else:
         form = UploadFileForm()
