@@ -13,5 +13,5 @@ urlpatterns = [
     path('<int:job_id>/add_email/', views.add_email, name='add_email'),
     path('<int:job_id>/edit_email/<int:email_id>', views.edit_email, name='edit_email'),
     path('<int:job_id>/<int:email_id>/delete/', views.delete_email, name='delete_email'),
-    path('<int:job_id>/upload/', upload_file, name='upload_file'),
+    path('<int:job_id>/upload/', upload_file),
 ]
