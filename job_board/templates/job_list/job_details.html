@@ -114,11 +114,10 @@
                         </div>
                     </form>
                     <div class="col-md-4">
-                        <button type="submit" class="btn btn-outline-info btn-rounded waves-effect">Upload .csv</button>
                             <form enctype="multipart/form-data" method="post" action="/jobs/{{ job.id }}/upload/"> {% csrf_token %}
 
                                 <button><input type="file" name="file" class="btn btn-outline-info btn-rounded waves-effect"/></button>
-                                <button><input type="submit" value="Upload File" class="btn btn-outline-info btn-rounded waves-effect" /></button>
+                                <button><input type="submit" value="Upload .csv" class="btn btn-outline-info btn-rounded waves-effect" /></button>
 
                             </form>
                     </div>

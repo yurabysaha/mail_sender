@@ -148,10 +148,10 @@ def export_to_csv_email(request, job_id):
 
     field_names = ['First_Name', 'Last_Name', 'Email']
 
-    writer = csv.DictWriter(response, fieldnames=field_names)
+    writer = csv.DictWriter(response, fieldnames=field_names, delimiter=';')
     writer.writeheader()
 
-    emails = Email.objects.values_list('first_name', 'last_name', 'email').prefetch_related('emails')
+    emails = Email.objects.values_list('email', 'first_name', 'last_name').filter(job=job)
 
     for email in emails:
         writer.writerow({'First_Name' : email[0], 'Last_Name' : email[1], 'Email' : email[2]})

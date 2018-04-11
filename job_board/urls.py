@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from email_service.views import upload_file
 
 urlpatterns = [
     path('', views.job_list, name = "jobs"),
