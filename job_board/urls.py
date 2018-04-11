@@ -1,5 +1,3 @@
-from django.conf import settings
-from django.conf.urls.static import static
 from django.urls import path
 from . import views
 from email_service.views import upload_file
@@ -14,4 +12,5 @@ urlpatterns = [
     path('<int:job_id>/edit_email/<int:email_id>', views.edit_email, name='edit_email'),
     path('<int:job_id>/<int:email_id>/delete/', views.delete_email, name='delete_email'),
     path('<int:job_id>/upload/', upload_file),
+    path('<int:job_id>/export/', views.export_to_csv_email, name='export_to_csv_email'),
 ]
