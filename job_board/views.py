@@ -141,22 +141,25 @@ def delete_email(request, email_id, job_id):
 
 
 def export_to_csv_email(request, job_id):
-    job = get_object_or_404(Job, id=job_id)
+    if request.user.is_authenticated:
 
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="emails_{}.csv"'.format(job.title)
+        job = get_object_or_404(Job, id=job_id)
 
-    field_names = ['First_Name', 'Last_Name', 'Email']
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="emails_{}.csv"'.format(job.title)
 
-    writer = csv.DictWriter(response, fieldnames=field_names, delimiter=';')
-    writer.writeheader()
+        field_names = ['First_Name', 'Last_Name', 'Email']
 
-    emails = Email.objects.values_list('email', 'first_name', 'last_name').filter(job=job)
+        writer = csv.DictWriter(response, fieldnames=field_names, delimiter=';')
+        writer.writeheader()
 
-    for email in emails:
-        writer.writerow({'First_Name' : email[0], 'Last_Name' : email[1], 'Email' : email[2]})
+        emails = Email.objects.values_list('email', 'first_name', 'last_name').filter(job=job)
 
-    return response
+        for email in emails:
+            writer.writerow({'First_Name' : email[0], 'Last_Name' : email[1], 'Email' : email[2]})
 
-    return redirect('/jobs/{}'.format(job_id))
+        return response
+
+    else:
+        return redirect('login')
 
