@@ -146,12 +146,15 @@ def export_to_csv_email(request, job_id):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="emails_{}.csv"'.format(job.title)
 
-    writer = csv.writer(response)
-    writer.writerow(['first_name', 'last_name', 'email'])
+    field_names = ['First_Name', 'Last_Name', 'Email']
+
+    writer = csv.DictWriter(response, fieldnames=field_names)
+    writer.writeheader()
+
     emails = Email.objects.values_list('first_name', 'last_name', 'email').prefetch_related('emails')
 
     for email in emails:
-        writer.writerow(email)
+        writer.writerow({'First_Name' : email[0], 'Last_Name' : email[1], 'Email' : email[2]})
 
     return response
 
