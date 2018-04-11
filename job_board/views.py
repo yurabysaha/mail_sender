@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.utils import timezone
 from .forms import JobForm, AddEmailForm
 from .models import Job
 from user_profile.models import MyUser
 from email_service.models import Email
+import csv
 
 
 def job_list(request):
@@ -137,3 +138,22 @@ def delete_email(request, email_id, job_id):
 
     else:
         return redirect('login')
+
+
+def export_to_csv_email(request, job_id):
+    job = get_object_or_404(Job, id=job_id)
+
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="emails_{}.csv"'.format(job.title)
+
+    writer = csv.writer(response)
+    writer.writerow(['first_name', 'last_name', 'email'])
+    emails = Email.objects.values_list('first_name', 'last_name', 'email').prefetch_related('emails')
+
+    for email in emails:
+        writer.writerow(email)
+
+    return response
+
+    return redirect('/jobs/{}'.format(job_id))
+
