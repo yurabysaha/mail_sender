@@ -120,11 +120,32 @@
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
-                        <a href="add_email/"><button type="button" class="btn btn-outline-info btn-rounded waves-effect" data-toggle="modal"
+                        <button type="button" class="btn btn-outline-info btn-rounded waves-effect" data-toggle="modal"
                                 data-target="#AddEmailModal">Add Email
-                        </button></a>
+                        </button>
                     </div>
+                    <!-- modal view for add email -->
+                    <form method="POST" class="form-group" action="/jobs/{{ job.id }}/add_email/"> {% csrf_token %}
+                        <div class="modal fade" id="AddEmailModal" role="dialog">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Add email: </h4>
+                                    </div>
+                                    <div class="modal-body">
 
+                                        {{ form.as_p }}
+
+                                    </div>
+                                    <div class="modal-footer">
+
+                                        <button class="btn btn-outline-info" type="submit">Save<i class="fa fa-paper-plane-o ml-2"></i></button>
+                                        <button type="button" class="btn btn-outline-info" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <div class="col-md-4">
                             <form enctype="multipart/form-data" method="post" action="/jobs/{{ job.id }}/upload/"> {% csrf_token %}
 

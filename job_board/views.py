@@ -84,7 +84,9 @@ def job_detail(request, job_id):
         page = request.GET.get('page')
         emails = paginator.get_page(page)
 
-        return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails})
+        form = AddEmailForm()
+
+        return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails, 'form':form})
     else:
         return redirect('/')
 
