@@ -13,6 +13,38 @@
 
 </nav>
      <table class="table table-hover">
+
+     <div class="pagination">
+
+         {% if jobs.has_previous %}
+
+             <a href="?page={{ jobs.previous_page_number }}"> < </a>
+
+         {% endif %}
+
+             {% for num in jobs.paginator.page_range %}
+
+                {% if jobs.number == num %}
+
+                    <strong>{{ num }}</strong>
+
+                {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
+
+                    {{ num }}
+
+                {% endif %}
+
+             {% endfor %}
+
+         {% if jobs.has_next %}
+
+             <a href="?page={{ jobs.next_page_number }}"> > </a>
+
+         {% endif %}
+
+     </div>
+
+
          {% for job in jobs %}
 
     <tr>
