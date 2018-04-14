@@ -5,6 +5,7 @@ from .models import Job
 from user_profile.models import MyUser
 from email_service.models import Email
 import csv
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def job_list(request):
@@ -13,7 +14,12 @@ def job_list(request):
         if query:
             jobs = Job.objects.filter(title__icontains=query)
             return render(request, 'job_list/job_list.html', {'jobs': jobs})
-        jobs = Job.objects.filter(user=request.user)
+        jobs_list = Job.objects.filter(user=request.user)
+
+        paginator = Paginator(jobs_list, 25)
+        page = request.GET.get('page')
+        jobs = paginator.get_page(page)
+
         return render(request, 'job_list/job_list.html', {'jobs': jobs})
     else:
         return redirect('/')
@@ -72,20 +78,15 @@ def job_edit(request, job_id):
 def job_detail(request, job_id):
     if request.user.is_authenticated:
         job = get_object_or_404(Job, id=job_id)
-        form = AddEmailForm(request.POST)
-        if request.method == "POST":
-            email = Email(email=request.POST['email'],
-                          first_name=request.POST['first_name'],
-                          last_name=request.POST['last_name'],
-                          job=job)
-            form = AddEmailForm(request.POST, instance=email)
-            if form.is_valid():
-                form.save()
-                return redirect('/jobs/{}'.format(job_id))
-            else:
-                form = AddEmailForm(instance=job)
+        emails_list = Email.objects.all().filter(job=job)
 
-        return render(request, 'job_list/job_details.html', {'job': job, 'form': form})
+        paginator = Paginator(emails_list, 25)
+        page = request.GET.get('page')
+        emails = paginator.get_page(page)
+
+        form = AddEmailForm()
+
+        return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails, 'form':form})
     else:
         return redirect('/')
 
@@ -134,7 +135,6 @@ def delete_email(request, email_id, job_id):
             return redirect('/jobs/{}'.format(job_id))
 
         return render(request, "job_list/job_details.html", context)
-
 
     else:
         return redirect('login')

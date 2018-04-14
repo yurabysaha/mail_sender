@@ -49,7 +49,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                       {% for email in job.emails.all %}
+
+                     <div class="pagination">
+
+         {% if emails.has_previous %}
+
+             <a href="?page={{ emails.previous_page_number }}"> < </a>
+
+         {% endif %}
+
+             {% for num in emails.paginator.page_range %}
+
+                {% if emails.number == num %}
+
+                    <strong>{{ num }}</strong>
+
+                {% elif num > emails.number|add:'-3' and num < emails.number|add:'3' %}
+
+                    {{ num }}
+
+                {% endif %}
+
+             {% endfor %}
+
+         {% if emails.has_next %}
+
+             <a href="?page={{ emails.next_page_number }}"> > </a>
+
+         {% endif %}
+
+     </div>
+
+                       {% for email in emails %}
                             <tr>
                               <td>{{ email.first_name }}</td>
                               <td>{{ email.last_name }}</td>
@@ -82,17 +113,19 @@
                                     </form>
                             </tr>
                         {%  endfor %}
+
+
                     </tbody>
                 </table>
                 </div>
                 <div class="row text-center">
                     <div class="col-md-4">
-                        <button type="button" class="btn btn-outline-info btn-rounded waves-effect" data-toggle="modal" data-target="#AddEmailModal">
-                                Add Email
+                        <button type="button" class="btn btn-outline-info btn-rounded waves-effect" data-toggle="modal"
+                                data-target="#AddEmailModal">Add Email
                         </button>
                     </div>
-                    <!-- modal vivw for add email -->
-                    <form method="POST" class="form-group"> {% csrf_token %}
+                    <!-- modal view for add email -->
+                    <form method="POST" class="form-group" action="/jobs/{{ job.id }}/add_email/"> {% csrf_token %}
                         <div class="modal fade" id="AddEmailModal" role="dialog">
                             <div class="modal-dialog">
                                 <div class="modal-content">
