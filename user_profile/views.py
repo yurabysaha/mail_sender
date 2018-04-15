@@ -55,11 +55,11 @@ def change_password(request):
             if form.is_valid():
                 user = form.save()
                 update_session_auth_hash(request, user)
-
                 return redirect('/user/me/')
         else:
             form = PasswordChangeForm(request.user)
 
         return render(request, 'mail_sender/change_password.html', {'form': form})
-    return redirect('/login')
+
+    return redirect('/')
 
