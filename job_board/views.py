@@ -5,6 +5,7 @@ from .models import Job
 from user_profile.models import MyUser
 from email_service.models import Email
 import csv
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 def job_list(request):
@@ -73,22 +74,31 @@ def job_detail(request, job_id):
     if request.user.is_authenticated:
         job = get_object_or_404(Job, id=job_id)
         emails_list = Email.objects.all().filter(job=job)
-
-        # paginator = Paginator(emails_list, 25)
-        # page = request.GET.get('page')
-        # emails = paginator.get_page(page)
-        # form = AddEmailForm()
+#TODO Make method for pagination
+        paginator = Paginator(emails_list, 25)
+        page = request.GET.get('page')
+        emails = paginator.get_page(page)
+        form = AddEmailForm()
 
         if 'first_name' in request.GET:
-            emails = Email.objects.order_by('first_name').filter(job=job)
+            emails_by_first_name = Email.objects.order_by('first_name').filter(job=job)
+            paginator = Paginator(emails_by_first_name, 25)
+            page = request.GET.get('page')
+            emails = paginator.get_page(page)
             return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails})
 
         elif 'last_name' in request.GET:
-            emails = Email.objects.order_by('last_name').filter(job=job)
+            emails_by_last_name = Email.objects.order_by('last_name').filter(job=job)
+            paginator = Paginator(emails_by_last_name, 25)
+            page = request.GET.get('page')
+            emails = paginator.get_page(page)
             return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails})
 
         elif 'email' in request.GET:
             emails = Email.objects.order_by('email').filter(job=job)
+            paginator = Paginator(emails, 25)
+            page = request.GET.get('page')
+            emails = paginator.get_page(page)
             return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails})
 
         else:
