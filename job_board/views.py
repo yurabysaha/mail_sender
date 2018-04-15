@@ -107,7 +107,7 @@ def add_email(request, job_id):
               form = AddEmailForm(instance=job)
               return render(request, 'job_list/job_add_email.html', {'form': form})
     else:
-        return redirect('login')
+        return redirect('/')
 
 
 def edit_email(request, email_id, job_id):
@@ -124,7 +124,7 @@ def edit_email(request, email_id, job_id):
             return render(request, 'job_list/job_email_edit.html', {'form': form})
 
     else:
-        return redirect('login')
+        return redirect('/')
 
 
 def delete_email(request, email_id, job_id):
@@ -137,7 +137,7 @@ def delete_email(request, email_id, job_id):
         return render(request, "job_list/job_details.html", context)
 
     else:
-        return redirect('login')
+        return redirect('/')
 
 
 def export_to_csv_email(request, job_id):
@@ -161,5 +161,5 @@ def export_to_csv_email(request, job_id):
         return response
 
     else:
-        return redirect('login')
+        return redirect('/')
 
