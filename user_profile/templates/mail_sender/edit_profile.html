@@ -6,6 +6,6 @@
                 {{ form.as_p }}
                 <button type="submit" class="save btn btn-default">Save</button>
             </form>
-            <a href="/user/change_password/">Change the password</a>
+            <a href='{% url 'change_password' %}' class="save btn btn-default">Change the password</a>
         {% endblock %}
 
