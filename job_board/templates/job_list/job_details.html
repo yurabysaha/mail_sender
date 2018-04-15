@@ -42,11 +42,13 @@
                 <div class="container">
                 <table class="table table-condensed text-center">
                     <thead>
-                        <tr class="text-info">
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>E-mail</th>
-                        </tr>
+                            <form action="" method="GET">
+                              <tr class="text-info">
+                                <th><input type="submit" class="btn" value="First name" name="first_name"></th>
+                                <th><input type="submit" class="btn" value="Last name" name="last_name"></th>
+                                <th><input type="submit" class="btn" value="Email" name="email"></th>
+                              </tr>
+                            </form>
                     </thead>
                     <tbody>
                        {% for email in job.emails.all %}
