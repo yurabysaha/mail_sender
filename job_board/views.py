@@ -69,37 +69,18 @@ def job_edit(request, job_id):
         return redirect('/')
 
 
-# def job_detail(request, job_id):
-#     if request.user.is_authenticated:
-#         job = get_object_or_404(Job, id=job_id)
-#         form = AddEmailForm(request.POST)
-#         if request.method == "POST":
-#             email = Email(email=request.POST['email'],
-#                           first_name=request.POST['first_name'],
-#                           last_name=request.POST['last_name'],
-#                           job=job)
-#             form = AddEmailForm(request.POST, instance=email)
-#             if form.is_valid():
-#                 form.save()
-#                 return redirect('/jobs/{}'.format(job_id))
-#             else:
-#                 form = AddEmailForm(instance=job)
-#
-#         return render(request, 'job_list/job_details.html', {'job': job, 'form': form})
-#     else:
-#         return redirect('/')
-
-
-
-
 def job_detail(request, job_id):
     if request.user.is_authenticated:
         job = get_object_or_404(Job, id=job_id)
         emails_list = Email.objects.all().filter(job=job)
-        # sorted_by_first_name = emails_list.sort()
-        # sorted_by_first_name.sort()
-        if "first_name" in request.GET:
-            emails = Email.objects.order_by('first_name').filter(job=job)[:5]
+
+        # paginator = Paginator(emails_list, 25)
+        # page = request.GET.get('page')
+        # emails = paginator.get_page(page)
+        # form = AddEmailForm()
+
+        if 'first_name' in request.GET:
+            emails = Email.objects.order_by('first_name').filter(job=job)
             return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails})
 
         elif 'last_name' in request.GET:
@@ -110,12 +91,9 @@ def job_detail(request, job_id):
             emails = Email.objects.order_by('email').filter(job=job)
             return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails})
 
-        # paginator = Paginator(emails_list, 25)
-        # page = request.GET.get('page')
-        # emails = paginator.get_page(page)
-        form = AddEmailForm()
+        else:
+            return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails, 'form':form})
 
-        return render(request, 'job_list/job_details.html', {'job': job, 'emails_list': emails_list, 'form':form})
     else:
         return redirect('/')
 
