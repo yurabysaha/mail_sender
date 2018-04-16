@@ -86,45 +86,29 @@ def job_detail(request, job_id):
         form = AddEmailForm()
 
         if 'first_name' in request.GET:
-            emails_by_first_name = Email.objects.order_by('first_name').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                'emails': handle_pagination(request, emails_by_first_name)})
+            sorted_emails = Email.objects.order_by('first_name').filter(job=job)
 
         elif '_first_name' in request.GET:
-            emails_by_first_name_inverted = Email.objects.order_by('-first_name').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request, emails_by_first_name_inverted)})
-
+            sorted_emails = Email.objects.order_by('-first_name').filter(job=job)
 
         elif 'last_name' in request.GET:
-            emails_by_last_name = Email.objects.order_by('last_name').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request, emails_by_last_name)})
+            sorted_emails = Email.objects.order_by('last_name').filter(job=job)
 
         elif '_last_name' in request.GET:
-            emails_by_last_name_inverted = Email.objects.order_by('-last_name').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request, emails_by_last_name_inverted)})
+            sorted_emails = Email.objects.order_by('-last_name').filter(job=job)
 
         elif 'email' in request.GET:
-            emails = Email.objects.order_by('email').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request, emails)})
+            sorted_emails = Email.objects.order_by('email').filter(job=job)
 
         elif '_email' in request.GET:
-            emails_inverted = Email.objects.order_by('-email').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request, emails_inverted)})
+            sorted_emails = Email.objects.order_by('-email').filter(job=job)
 
         else:
             return render(request, 'job_list/job_details.html', {'job': job, 'emails': handle_pagination(request, emails_list)})
 
+        return render(request, 'job_list/job_details.html', {'job': job,
+                                                             'emails': handle_pagination(request,
+                                                                                         sorted_emails)})
     else:
 
         return redirect('/')
