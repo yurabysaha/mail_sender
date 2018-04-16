@@ -83,50 +83,14 @@ def job_detail(request, job_id):
         job = get_object_or_404(Job, id=job_id)
         emails_list = Email.objects.all().filter(job=job)
 
+        paginator = Paginator(emails_list, 25)
+        page = request.GET.get('page')
+        emails = paginator.get_page(page)
+
         form = AddEmailForm()
 
-        if 'first_name' in request.GET:
-            emails_by_first_name = Email.objects.order_by('first_name').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                'emails': handle_pagination(request, emails_by_first_name)})
-
-        elif '_first_name' in request.GET:
-            emails_by_first_name_inverted = Email.objects.order_by('-first_name').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request, emails_by_first_name_inverted)})
-
-
-        elif 'last_name' in request.GET:
-            emails_by_last_name = Email.objects.order_by('last_name').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request, emails_by_last_name)})
-
-        elif '_last_name' in request.GET:
-            emails_by_last_name_inverted = Email.objects.order_by('-last_name').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request, emails_by_last_name_inverted)})
-
-        elif 'email' in request.GET:
-            emails = Email.objects.order_by('email').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request, emails)})
-
-        elif '_email' in request.GET:
-            emails_inverted = Email.objects.order_by('-email').filter(job=job)
-
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request, emails_inverted)})
-
-        else:
-            return render(request, 'job_list/job_details.html', {'job': job, 'emails': handle_pagination(request, emails_list)})
-
+        return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails, 'form':form})
     else:
-
         return redirect('/')
 
 
@@ -146,7 +110,7 @@ def add_email(request, job_id):
               form = AddEmailForm(instance=job)
               return render(request, 'job_list/job_add_email.html', {'form': form})
     else:
-        return redirect('login')
+        return redirect('/')
 
 
 def edit_email(request, email_id, job_id):
@@ -163,7 +127,7 @@ def edit_email(request, email_id, job_id):
             return render(request, 'job_list/job_email_edit.html', {'form': form})
 
     else:
-        return redirect('login')
+        return redirect('/')
 
 
 def delete_email(request, email_id, job_id):
@@ -175,9 +139,8 @@ def delete_email(request, email_id, job_id):
 
         return render(request, "job_list/job_details.html", context)
 
-
     else:
-        return redirect('login')
+        return redirect('/')
 
 
 def export_to_csv_email(request, job_id):
@@ -201,4 +164,5 @@ def export_to_csv_email(request, job_id):
         return response
 
     else:
-        return redirect('login')
+        return redirect('/')
+

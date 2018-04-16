@@ -46,3 +46,20 @@ def edit_profile(request):
         form = ProfileForm(instance=request.user)
 
     return render(request, 'mail_sender/edit_profile.html', {'form': form})
+
+
+def change_password(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = PasswordChangeForm(request.user, request.POST)
+            if form.is_valid():
+                user = form.save()
+                update_session_auth_hash(request, user)
+                return redirect('/user/me/')
+        else:
+            form = PasswordChangeForm(request.user)
+
+        return render(request, 'mail_sender/change_password.html', {'form': form})
+
+    return redirect('/')
+
