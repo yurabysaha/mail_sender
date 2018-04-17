@@ -1,11 +1,26 @@
 {% extends 'base.html' %}
 
         {% block content %}
-
-            <h1>New job</h1>
-            <form method="POST" class="form-contol">{% csrf_token %}
-                {{ form.as_ul }}
-                <button type="submit" class="save btn btn-default">Save</button>
-            </form>
-
+            <div class="air-card air-card m-0-left m-0-top p-0-top-bottom" style="margin-top: 15px;">
+                <div class="container">
+                    <div class="p-3 mb-2 bg-info text-white">
+                        <h3> Create new job</h3>
+                    </div>
+                    <form method="POST" class="form-contol">{% csrf_token %}
+                <!-- Title of job-->
+                        <div>
+                            <label for="title"><strong>Job Title:</strong></label>
+                            <input type="text" class="form-control" name="title" autofocus required>
+                        </div>
+                <!-- Message if job-->
+                        <div>
+                            <label for="massage" ><strong>Text of email:</strong></label>
+                            <textarea type="text" class="form-control" name="email_text" rows="8"></textarea>
+                        </div>
+                        <div class="text-center" style="margin-top: 15px;">
+                            <button type="submit" class="btn btn-outline-info btn-rounded waves-effect">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         {% endblock %}
