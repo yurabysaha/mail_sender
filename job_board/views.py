@@ -81,7 +81,7 @@ def handle_pagination(request, data_to_paginate):
 def job_detail(request, job_id):
     if request.user.is_authenticated:
         job = get_object_or_404(Job, id=job_id)
-        emails_list = Email.objects.all().filter(job=job)
+        emails_list = Email.objects.order_by('first_name').filter(job=job)
 
         form = AddEmailForm()
 
