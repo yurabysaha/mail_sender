@@ -2,7 +2,6 @@
 
     {% block content %}
 
-
     <div class="air-card air-card m-0-left m-0-top p-0-top-bottom" style="margin-top: 15px;">
         <div class="container">
             <div class="p-3 mb-2 bg-info text-white">
@@ -22,9 +21,7 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-4">
-
                     <ul class="m-sm-right" style="margin-top: 25px;">
                         <small class="text-muted">  Created:</small>
                         <p>{{ job.created_at }} </p>
@@ -33,9 +30,7 @@
                     </ul>
                     </div>
                 </div>
-
             </div>
-
             <div class="container" style="margin-top: 25px; border-top: 1px solid #9a9a9a;">
                 <table class="table">
                     <!-- modal view for add email -->
@@ -52,18 +47,14 @@
 
                                     </div>
                                     <div class="modal-footer">
-
                                         <button class="btn btn-outline-info" type="submit">Save<i class="fa fa-paper-plane-o ml-2"></i></button>
                                         <button type="button" class="btn btn-outline-info" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </form>
-
            </tr>
-
 
             <div class="container" style="margin-top: 0px;">
                 <div class="container">
@@ -115,8 +106,6 @@
 
                             </div></th>
                     </tr>
-
-
                         <tr class="text-info">
                             <th>First name</th>
                             <th>Last name</th>
@@ -124,8 +113,6 @@
                         </tr>
                     </thead>
                     <tbody>
-
-
 
                        {% for email in emails %}
                             <tr>
