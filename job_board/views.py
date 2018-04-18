@@ -69,7 +69,8 @@ def job_edit(request, job_id):
     else:
         return redirect('/')
 
-#TODO add this method to another "Help functions" file
+
+# TODO add this method to another "Help functions" file
 def handle_pagination(request, data_to_paginate):
     paginator = Paginator(data_to_paginate, 25)
     page = request.GET.get('page')
