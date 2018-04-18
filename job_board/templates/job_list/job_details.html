@@ -42,11 +42,21 @@
                 <div class="container">
                 <table class="table table-condensed text-center">
                     <thead>
-                        <tr class="text-info">
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>E-mail</th>
-                        </tr>
+
+                     <tr class="text-info">
+                               <th><div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="?order_by=first_name">First Name ▲</a>
+                                    <a href="?order_by=-first_name">▼</a>
+                               </div></th>
+                                <th><div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="?order_by=last_name">Last Name ▲</a>
+                                    <a href="?order_by=-last_name">▼</a>
+                               </div></th>
+                                <th><div class="btn-group" role="group" aria-label="Basic example">
+                                    <a href="?order_by=email">Email ▲</a>
+                                    <a href="?order_by=-email">▼</a>
+                               </div></th>
+                             </tr>
                     </thead>
                     <tbody>
 
@@ -80,15 +90,16 @@
 
      </div>
 
+
                        {% for email in emails %}
                             <tr>
                               <td>{{ email.first_name }}</td>
                               <td>{{ email.last_name }}</td>
                               <td>{{ email.email }}</td>
                               <td> <a href="edit_email/{{ email.id }}" type="button" class="btn btn-default">Edit Email</a></td>
-                              <td><a type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Delete</a>
+                              <td> <a type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Delete</a>
 
-                                             <form method="POST" action="/jobs/{{ job.id }}/{{ email.id }}/delete/"> {% csrf_token %}
+                                    <form method="POST" action="/jobs/{{ job.id }}/{{ email.id }}/delete/"> {% csrf_token %}
                                     <!-- Modal -->
                                     <div class="modal fade" id="myModal" role="dialog">
                                       <div class="modal-dialog">
