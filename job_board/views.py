@@ -172,4 +172,3 @@ def export_to_csv_email(request, job_id):
 
     else:
         return redirect('/')
-
