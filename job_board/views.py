@@ -81,21 +81,16 @@ def handle_pagination(request, data_to_paginate):
 def job_detail(request, job_id):
     if request.user.is_authenticated:
         job = get_object_or_404(Job, id=job_id)
-        emails_list = Email.objects.order_by('first_name').filter(job=job)
+
+        order_by = request.GET.get('order_by', 'first_name')
+        emails_list = Email.objects.filter(job=job).order_by(order_by)
 
         form = AddEmailForm()
 
-        if 'order_by' in request.GET:
-            order_by = request.GET.get('order_by')
-            sorted_emails = Email.objects.order_by(order_by).filter(job=job)
+        return render(request, 'job_list/job_details.html', {'job': job,
+                                                             'emails': handle_pagination(request,emails_list),
+                                                             'form': form})
 
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                             'emails': handle_pagination(request,
-                                                                                         sorted_emails)})
-        else:
-            return render(request, 'job_list/job_details.html', {'job': job,
-                                                                 'emails': handle_pagination(request,
-                                                                                             emails_list)})
     else:
 
         return redirect('/')
