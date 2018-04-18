@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 
-
     {% block content %}
+
     <div class="container-fluid" style="margin-top: 15px;">
         <!-- Navbar for job list -->
         <nav class="navbar navbar-light bg-light">
             <span class="navbar-brand mb-0 h1"><strong>List of the jobs</strong></span>
-            <a href="create" type="button" class="btn btn-success"><strong>+ Сreate new job</strong></a>
+            <a href="create" class="btn btn-success"><strong>Create New Job</strong></a>
 
             <form type="GET" action='' style="margin: 0">
                 <input type="text" name="q"  placeholder="Search..." value="{{ request.GET.q }}"/>
@@ -17,7 +17,7 @@
 
         <!-- Pagination -->
         <nav style="margin-top: 15px;">
-            <ul class="pagination pg-blue">
+            <ul class="pagination">
                 <!--Arrow left-->
                 <li class="page-item">
                     {% if jobs.has_previous %}
@@ -91,4 +91,3 @@
     </div>
 
     {% endblock %}
-
