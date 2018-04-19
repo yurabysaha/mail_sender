@@ -2,82 +2,92 @@
 
     {% block content %}
 
-    <a href="create" type="button" class="btn btn-default">Сreate</a>
-            <nav class="navbar navbar-light bg-light">
-  <span class="navbar-brand mb-0 h1">List of the jobs</span>
+    <div class="container-fluid" style="margin-top: 15px;">
+        <!-- Navbar for job list -->
+        <nav class="navbar navbar-light bg-light">
+            <span class="navbar-brand mb-0 h1"><strong>List of the jobs</strong></span>
+            <a href="create" class="btn btn-success"><strong>Create New Job</strong></a>
 
-   <form type="GET" action='' style="margin: 0">
-     <input type="text" name="q"  placeholder="Search..." value="{{ request.GET.q }}"/>
-     <input type="submit" value="Search" />
-   </form>
+            <form type="GET" action='' style="margin: 0">
+                <input type="text" name="q"  placeholder="Search..." value="{{ request.GET.q }}"/>
+                <input type="submit" value="Search" class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3"/>
+            </form>
 
-</nav>
-     <table class="table table-hover">
+        </nav>
 
-     <div class="pagination">
+        <!-- Pagination -->
+        <nav style="margin-top: 15px;">
+            <ul class="pagination">
+                <!--Arrow left-->
+                <li class="page-item">
+                    {% if jobs.has_previous %}
+                    <a class="page-link" aria-label="Previous"
+                       href="?page={{ jobs.previous_page_number }}">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                    </a>
+                    {% endif %}
+                </li>
+                <!--Numbers-->
+                {% for num in jobs.paginator.page_range %}
+                    {% if jobs.number == num %}
+                        <li class="page-item active"><a class="page-link">{{ num }}</a></li>
+                    {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
+                        <li class="page-item"><a class="page-link">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                <!--Arrow right-->
+                <li class="page-item">
+                    {% if jobs.has_next %}
+                    <a class="page-link" aria-label="Next"
+                       href="?page={{ jobs.next_page_number }}">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                    </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </nav>
 
-         {% if jobs.has_previous %}
+        <!-- Table of jobs -->
+        <table class="table table-hover">
+            {% for job in jobs %}
 
-             <a href="?page={{ jobs.previous_page_number }}"> < </a>
+            <tr>
+                <td class="text-center"><a href="{{ job.id }}">{{ job.title }}</a></td>
+                <td class="text-right">{{ job.created_at }}</td>
+                <td class="text-center"><a href="{{ job.id }}/edit" class="btn btn-default">
+                        <img src="https://png.icons8.com/metro/50/000000/settings.png" height="20px" width="20px"></a>
+                    <a class="btn btn-default" data-toggle="modal" data-target="#myModal">
+                        <img src="https://png.icons8.com/metro/50/000000/trash.png" height="20px" width="20px"</a></td>
 
-         {% endif %}
+                <!-- Modal form to "DELETE" button -->
+                    <form method="POST" action="/jobs/{{ job.id }}/delete/"> {% csrf_token %}
 
-             {% for num in jobs.paginator.page_range %}
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
 
-                {% if jobs.number == num %}
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Confirmation deleting</h4>
+                                    </div>
+                                <div class="modal-body">
+                                    <p>You want to delete the {{ job.title }}?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" value="Confirm" class="btn btn-warning">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
 
-                    <strong>{{ num }}</strong>
-
-                {% elif num > jobs.number|add:'-3' and num < jobs.number|add:'3' %}
-
-                    {{ num }}
-
-                {% endif %}
-
-             {% endfor %}
-
-         {% if jobs.has_next %}
-
-             <a href="?page={{ jobs.next_page_number }}"> > </a>
-
-         {% endif %}
-
-     </div>
-
-
-         {% for job in jobs %}
-
-    <tr>
-       <td scope="col"><a href="{{ job.id }}">{{ job.title }}</a></td>
-       <td>{{ job.created_at }}</td>
-       <td><a type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Delete</a>
-
-           <form method="POST" action="/jobs/{{ job.id }}/delete/"> {% csrf_token %}
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Confirmation deleting.</h4>
-        </div>
-        <div class="modal-body">
-            <p>You want to delete the {{ job.title }}?</p>
-        </div>
-        <div class="modal-footer">
-            <input type="submit" value="Confirm" class="btn btn-warning">
-
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-
+            </tr>
+            {% endfor %}
+        </table>
     </div>
-  </div>
-  </form>
-      <a href="{{ job.id }}/edit" type="button" class="btn btn-default">Edit</a></td>
-    </tr>
-         {% endfor %}
-    </table>
 
     {% endblock %}

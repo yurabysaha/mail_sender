@@ -14,13 +14,8 @@ def job_list(request):
         if query:
             jobs = Job.objects.filter(title__icontains=query)
             return render(request, 'job_list/job_list.html', {'jobs': jobs})
-        jobs_list = Job.objects.filter(user=request.user)
-
-        paginator = Paginator(jobs_list, 25)
-        page = request.GET.get('page')
-        jobs = paginator.get_page(page)
-
-        return render(request, 'job_list/job_list.html', {'jobs': jobs})
+        jobs = Job.objects.filter(user=request.user)
+        return render(request, 'job_list/job_list.html', {'jobs': handle_pagination(request, jobs)})
     else:
         return redirect('/')
 
@@ -75,19 +70,30 @@ def job_edit(request, job_id):
         return redirect('/')
 
 
+# TODO add this method to another "Help functions" file
+def handle_pagination(request, data_to_paginate):
+    paginator = Paginator(data_to_paginate, 25)
+    page = request.GET.get('page')
+    paginated_page = paginator.get_page(page)
+
+    return paginated_page
+
+
 def job_detail(request, job_id):
     if request.user.is_authenticated:
         job = get_object_or_404(Job, id=job_id)
-        emails_list = Email.objects.all().filter(job=job)
 
-        paginator = Paginator(emails_list, 25)
-        page = request.GET.get('page')
-        emails = paginator.get_page(page)
+        order_by = request.GET.get('order_by', 'first_name')
+        emails_list = Email.objects.filter(job=job).order_by(order_by)
 
         form = AddEmailForm()
 
-        return render(request, 'job_list/job_details.html', {'job': job, 'emails': emails, 'form':form})
+        return render(request, 'job_list/job_details.html', {'job': job,
+                                                             'emails': handle_pagination(request,emails_list),
+                                                             'form': form})
+
     else:
+
         return redirect('/')
 
 
@@ -162,4 +168,3 @@ def export_to_csv_email(request, job_id):
 
     else:
         return redirect('/')
-
