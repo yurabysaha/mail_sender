@@ -34,14 +34,25 @@
                 </div>
             </div>
         </div>
-        <div class="container" style="margin-top: 25px; border-top: 1px solid #9a9a9a;">
-            <h4 style="margin-top: 25px;"> Sending to emails:</h4>
-        </div>
+              <div class="container" style="margin-top: 0px;">
+                  <div class="container">
+                  <table class="table table-condensed text-center">
+                  </tr>
+                      <td><h4> Sending to emails:</h4></td>
+                      <td><button class="btn btn-primary btn-sm" data-toggle="modal"data-target="#AddEmailModal" >Add Email</button></td>
+                      <td><a href="export"><button type="submit" class="btn btn-primary btn-sm">Export all emails.csv</button></a></td>
+                      <td><form enctype="multipart/form-data" method="post" action="/jobs/{{ job.id }}/upload/"> {% csrf_token %}
+                                <button class="btn btn-primary btn-sm"><input type="file" name="file"/></button>
+                                <button class="btn btn-primary btn-sm"><input type="submit" value="Upload file" /></button>
+                          </form></td>
+                  </tr>
+                  </table>
+                  </div>
+              </div>
         <div class="container" style="margin-top: 15px;">
             <div class="container">
                 <table class="table table-condensed text-center">
                     <thead>
-
                     <tr class="text-info">
                         <th>
                             <div class="btn-group" role="group" aria-label="Basic example">
@@ -132,16 +143,9 @@
                         </tr>
                     {% endfor %}
 
-
                     </tbody>
                 </table>
             </div>
-            <div class="row text-center">
-                <div class="col-md-4">
-                    <button type="button" class="btn btn-outline-info btn-rounded waves-effect" data-toggle="modal"
-                            data-target="#AddEmailModal">Add Email
-                    </button>
-                </div>
                 <!-- modal view for add email -->
                 <form method="POST" class="form-group" action="/jobs/{{ job.id }}/add_email/"> {% csrf_token %}
                     <div class="modal fade" id="AddEmailModal" role="dialog">
@@ -156,7 +160,6 @@
 
                                 </div>
                                 <div class="modal-footer">
-
                                     <button class="btn btn-outline-info" type="submit">Save<i
                                             class="fa fa-paper-plane-o ml-2"></i></button>
                                     <button type="button" class="btn btn-outline-info" data-dismiss="modal">Close
@@ -166,27 +169,7 @@
                         </div>
                     </div>
                 </form>
-                <div class="col-md-4">
-                    <form enctype="multipart/form-data" method="post"
-                          action="/jobs/{{ job.id }}/upload/"> {% csrf_token %}
-
-                        <button><input type="file" name="file" class="btn btn-outline-info btn-rounded waves-effect"/>
-                        </button>
-                        <button><input type="submit" value="Upload file"
-                                       class="btn btn-outline-info btn-rounded waves-effect"/></button>
-
-                    </form>
-                </div>
-                <div class="col-md-4">
-                    <a href="export">
-                        <button type="submit" class="btn btn-outline-info btn-rounded waves-effect">Export all
-                            emails.csv
-                        </button>
-                    </a>
-
-                </div>
             </div>
-        </div>
-    </div>
 
 {% endblock %}
+
