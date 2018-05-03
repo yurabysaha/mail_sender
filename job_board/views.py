@@ -177,16 +177,17 @@ def send_emails(request, job_id):
 
         job = get_object_or_404(Job, id=job_id)
         if request.method == "POST":
-            data_for_sending = Job(email_for_send=request.POST['email_for_send'],
+            data_for_sending = Job(from_email_send=request.POST['from_email_send'],
                                    delay_time=request.POST['delay_time'],
                                    user=request.user)
             form = EmailsSendForm(request.POST, instance=data_for_sending)
             if form.is_valid():
                 form.save()
 
-                emails = Email.objects.values_list('email').filter(job=job)
+                emails = Email.objects.filter(job=job).values_list('email')
+
                 for email in emails:
-                    send_mail(job.title, message=job.email_text, from_email=job.email_for_send, recipient_list=email)
+                    send_mail(job.title, message=job.email_text, from_email=job.from_email_send, recipient_list=email)
                     time.sleep(job.delay_time)
                 return redirect('/jobs/{}'.format(job_id))
         else:
@@ -195,29 +196,3 @@ def send_emails(request, job_id):
 
     else:
         return redirect('/')
-
-
-# def send_emails(request, job_id):
-#     if request.user.is_authenticated:
-#
-#         job = get_object_or_404(Job, id=job_id)
-#         if request.method == "POST":
-#             data_for_sending = Job(email_for_send=request.POST['email_for_send'],
-#                                    delay_time=request.POST['delay_time'],
-#                                    user=request.user)
-#             form = EmailsSendForm(request.POST, instance=data_for_sending)
-#             if form.is_valid():
-#                 form.save()
-#
-#                 emails = Email.objects.values_list('email').filter(job=job)
-#
-#                 for email in emails:
-#                     send_mail('ku', message='hello', from_email=job.email_for_send, recipient_list=email)
-#                     time.sleep(job.delay_time)
-#                 return redirect('/jobs/{}'.format(job_id))
-#         else:
-#             form = EmailsSendForm(instance=job)
-#             return render(request, "job_list/send_emails.html", {'form': form})
-#
-#     else:
-#         return redirect('/')

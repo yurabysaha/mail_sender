@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+         <div class="air-card air-card m-0-left m-0-top p-0-top-bottom" style="margin-top: 15px;">
+                <div class="container">
+                    <div class="p-3 mb-2 bg-info text-white">
+                        <h2>Send Emails</h2>
+                    </div>
+                    <form role="form" method="post" class="form-group">{% csrf_token %}
+                        {{ form.from_email_send.label }}: {{ form.from_email_send }}
+                        {{ form.delay_time.label }}: {{ form.delay_time }}
+
+                    <div class="text-center">
+                        <a type="button" class="btn btn-default" data-toggle="modal" data-target="#infoSend">Send</a>
+                        <form method="POST" action=""> {% csrf_token %}
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="infoSend" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">Please check your email, and access sending from your email, then continue sending!</h4>
+                                    </div>
+                                <div class="modal-footer">
+                                    <input type="submit" value="Start Sending!" class="btn btn-warning">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                    </div>
+                    </form>
+                </div>
+         </div>
+
+
+{% endblock %}

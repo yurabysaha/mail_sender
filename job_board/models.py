@@ -7,8 +7,8 @@ from mail_sender import settings
 class Job(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=18)
-    email_for_send = models.EmailField()
-    delay_time = models.IntegerField(default=0)
+    from_email_send = models.EmailField()
+    delay_time = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     email_text = models.TextField()

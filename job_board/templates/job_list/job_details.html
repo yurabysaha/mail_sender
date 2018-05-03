@@ -39,7 +39,8 @@
                   <table class="table table-condensed text-center">
                   </tr>
                       <td><h4> Sending to emails:</h4></td>
-                            <td><a href="send_emails" type="button" class="btn btn-default">Send Email</a>
+                      <td><button class="btn btn-primary btn-sm" data-toggle="modal"data-target="#AddEmailModal" >Add Email</button></td>
+                      <td><a href="send_emails"><button type="submit" class="btn btn-primary btn-sm">Send Email</button></a></td>
                       <td><a href="export"><button type="submit" class="btn btn-primary btn-sm">Export all emails.csv</button></a></td>
                       <td><form enctype="multipart/form-data" method="post" action="/jobs/{{ job.id }}/upload/"> {% csrf_token %}
                                 <button class="btn btn-primary btn-sm"><input type="file" name="file"/></button>

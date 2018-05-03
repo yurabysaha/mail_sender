@@ -118,10 +118,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+# For local sending
+# run python -m smtpd -n -c DebuggingServer localhost:1025
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 EMAIL_HOST_TLS = True
+
+# For prodaction sending
 
 # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # EMAIL_HOST = 'smtp.gmail.com'
