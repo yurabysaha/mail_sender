@@ -24,3 +24,14 @@ class AddEmailForm(forms.ModelForm):
             'first_name': forms.TextInput(attrs={'class': 'form-control'}),
             'last_name': forms.TextInput(attrs={'class': 'form-control'})
         }
+
+
+class EmailsSendForm(forms.ModelForm):
+
+    class Meta:
+        model = Job
+        fields = ('email_for_send', 'delay_time',)
+        widgets = {
+            'email_for_send': forms.TextInput(attrs={'class': 'form-control'}),
+            'delay_time': forms.TextInput(attrs={'class': 'form-control'})
+        }

@@ -13,4 +13,6 @@ urlpatterns = [
     path('<int:job_id>/<int:email_id>/delete/', views.delete_email, name='delete_email'),
     path('<int:job_id>/upload/', upload_file),
     path('<int:job_id>/export/', views.export_to_csv_email, name='export_to_csv_email'),
+    path('<int:job_id>/send_emails/', views.send_emails, name='send_emails'),
+
 ]
